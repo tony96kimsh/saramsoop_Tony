@@ -1,0 +1,353 @@
+# HR Management System - 모노레포 .gitignore
+
+# ====================
+# .NET / ASP.NET Core (Backend)
+# ====================
+
+## Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## Visual Studio files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+## .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Entity Framework
+*.edmx.diagram
+*.edmx.sql
+
+## Files built by Visual Studio
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.log
+*.tlog
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+## NuGet Packages
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+## Microsoft Azure Build Output
+csx/
+*.build.csdef
+
+## Visual Studio cache files
+*.[Cc]ache
+!?*.[Cc]ache/
+
+## Others
+ClientBin/
+~$*
+*~
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.pfx
+*.publishsettings
+orleans.codegen.cs
+
+## SQL Server files
+*.mdf
+*.ldf
+*.ndf
+
+## ====================
+# Node.js / React (Frontend)
+# ====================
+
+## Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+## Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+## Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+## nyc test coverage
+.nyc_output
+
+## Grunt intermediate storage
+.grunt
+
+## Bower dependency directory
+bower_components
+
+## node-waf configuration
+.lock-wscript
+
+## Compiled binary addons
+build/Release
+
+## Dependency directories
+jspm_packages/
+
+## TypeScript cache
+*.tsbuildinfo
+
+## Optional npm cache directory
+.npm
+
+## Optional eslint cache
+.eslintcache
+
+## Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+## Optional REPL history
+.node_repl_history
+
+## Output of 'npm pack'
+*.tgz
+
+## Yarn Integrity file
+.yarn-integrity
+
+## dotenv environment variables file
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+## parcel-bundler cache
+.cache
+.parcel-cache
+
+## Next.js build output
+.next
+out
+
+## Nuxt.js build / generate output
+.nuxt
+dist
+
+## Gatsby files
+.cache/
+public
+
+## Vite build output
+dist/
+dist-ssr/
+
+## Rollup.js default build output
+dist/
+
+## Storybook build outputs
+.out
+.storybook-out
+storybook-static
+
+## ====================
+# Database
+# ====================
+
+## PostgreSQL
+*.sql.backup
+*.backup
+*.dump
+
+## SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+## ====================
+# Development Tools
+# ====================
+
+## VS Code
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+## JetBrains IDEs (Rider, WebStorm, etc.)
+.idea/
+*.sln.iml
+
+## Vim
+*.swp
+*.swo
+*~
+
+## Emacs
+\#*\#
+.\#*
+
+## ====================
+# OS Generated Files
+# ====================
+
+## macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+## Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+## Linux
+*~
+
+## ====================
+# Security & Secrets
+# ====================
+
+## User secrets
+secrets.json
+appsettings.*.json
+!appsettings.json
+!appsettings.Development.json
+
+## Environment files
+.env
+.env.local
+.env.*.local
+
+## SSL certificates
+*.pfx
+*.p12
+*.crt
+*.key
+*.pem
+
+## ====================
+# Logs & Temporary Files
+# ====================
+
+## Application logs
+logs/
+*.log
+
+## Temporary files
+temp/
+tmp/
+*.tmp
+
+## File uploads
+uploads/
+
+## ====================
+# Project Specific
+# ====================
+
+## HR Management System specific
+/backend/HRManagementBackend/wwwroot/uploads/
+/frontend/hr-management-frontend/public/uploads/
+
+## Documentation builds
+docs/_build/
+docs/.doctrees/
+
+## Test results
+TestResults/
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+
+## Backup files
+*.bak
+*.backup
+
+## ====================
+# Docker (if used)
+# ====================
+Dockerfile.prod
+docker-compose.prod.yml
+.dockerignore
+
+## ====================
+# CI/CD
+# ====================
+.github/workflows/*.yml
+!.github/workflows/ci.yml
+
+## ====================
+# Package manager locks (keep these)
+# ====================
+# These files should be committed
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
