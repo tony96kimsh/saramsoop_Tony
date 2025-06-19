@@ -28,6 +28,12 @@ bld/
 *.sln.docstates
 *.userprefs
 
+## Visual Studio 2022 specific
+.vs/
+.vscode/
+*.vsidx
+*.vstemplate
+
 ## .NET Core
 project.lock.json
 project.fragment.lock.json
