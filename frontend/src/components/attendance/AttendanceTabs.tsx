@@ -1,8 +1,7 @@
+// component/attendance/AttendanceTabs.tsx
+
 import React from 'react';
 import { Tabs, Tab, Box } from '@mui/material';
-import MyAttendancePage from '../../pages/attendance/MyAttendancePage';
-import AdminAttendancePage from '../../pages/attendance/AdminAttendancePage';
-import TeamAttendancePage from '../../pages/attendance/TeamAttendancePage';
 
 function AttendanceTabs() {
   const [tabIndex, setTabIndex] = React.useState(0);
@@ -29,11 +28,6 @@ function AttendanceTabs() {
         <Tab label="팀 근태 관리" />
       </Tabs>
 
-      <Box sx={{ mt: 2 }}>
-        {tabIndex === 0 && <MyAttendancePage />}
-        {tabIndex === 1 && <AdminAttendancePage />}
-        {tabIndex === 2 && <TeamAttendancePage />}
-      </Box>
     </Box>
   );
 }
