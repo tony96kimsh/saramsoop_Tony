@@ -1,18 +1,24 @@
-import { BrowserRouter } from 'react-router-dom'
-import './App.css'
-import Header from './components/Layout/Header'
-import LoginPage from './pages/LoginPage'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import HomePage from './pages/HomePage';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 function App() {
-
   return (
-    <>
-      <BrowserRouter>
-        <Header />
-        <LoginPage />
-      </BrowserRouter>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

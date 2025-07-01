@@ -1,25 +1,12 @@
-import { Box, Paper } from '@mui/material';
+import { Box, Paper, Typography } from '@mui/material';
 import LoginForm from '../components/auth/LoginForm';
+import { useLogin } from '../hooks/useLogin';
 
 const LoginPage = () => {
-  const handleLogin = async (employeeNo: string, password: string) => {
-    try {
-      const res = await fetch('http://localhost:5226/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: employeeNo, password }),
-      });
+  const { login, loading, error } = useLogin();
 
-      if (res.ok) {
-        const data = await res.json();
-        alert(`${data.username} 님 (${data.role}) 로그인 성공`);
-        // 페이지 이동 등 처리
-      } else {
-        alert('아이디 또는 비밀번호 오류');
-      }
-    } catch (err) {
-      alert(err + ' 서버 연결 오류');
-    }
+  const handleLogin = (id: string, pw: string) => {
+    login(id, pw);
   };
 
   return (
@@ -46,6 +33,8 @@ const LoginPage = () => {
         }}
       >
         <LoginForm onSubmit={handleLogin} />
+        {loading && <Typography>로그인 중...</Typography>}
+        {error && <Typography color="error">{error}</Typography>}
       </Paper>
     </Box>
   );

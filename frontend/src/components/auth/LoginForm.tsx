@@ -12,13 +12,17 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(employeeNo, password); // 상위에서 전달한 로직 실행
+    if (!employeeNo.trim() || !password.trim()) {
+      alert('사원 번호와 비밀번호를 입력해주세요.');
+      return;
+    }
+    onSubmit(employeeNo, password);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       {/* 로고 */}
-      <Box>
+      <Box mb={2}>
         <img src={logo} alt="logo" style={{ width: 110, height: 110 }} />
       </Box>
 
