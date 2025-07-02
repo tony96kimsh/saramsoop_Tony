@@ -29,7 +29,6 @@ const LoginPage = () => {
           p: 4,
           borderRadius: 2,
           textAlign: 'center',
-          transform: 'translateY(-10%)',
         }}
       >
         <LoginForm onSubmit={handleLogin} />

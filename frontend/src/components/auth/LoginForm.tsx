@@ -30,9 +30,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
       <Typography variant="h5" fontWeight="bold" mb={1}>
         사람이 숨쉬는 조직, 사람숲
       </Typography>
-      <Typography variant="body2" color="text.secondary" mb={3}>
-        계정에 로그인하세요
-      </Typography>
 
       {/* 입력 필드 */}
       <TextField
@@ -75,7 +72,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
 
       {/* 하단 안내 */}
       <Box mt={2}>
-        <Typography sx={{ color: '#447A5C', fontSize: '0.875rem' }}>
+        <Typography sx={{ color: '#447A5C', fontSize: '0.9rem' }}>
           비밀번호 재설정
         </Typography>
       </Box>
