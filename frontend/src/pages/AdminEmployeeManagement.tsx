@@ -2,7 +2,7 @@ import { employees } from '../mock/Employees';
 import EmployeeTable from '../components/EmployeeTable';
 import { Box, Button, Paper, Stack, Toolbar, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import Header from '../components/header';
+import Header from '../components/Header';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 
