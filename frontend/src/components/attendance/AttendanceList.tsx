@@ -1,6 +1,9 @@
-// Components > attendance > PeriodAttendanceList.tsx
+// Components > attendance > AttendanceList.tsx
 // 기간별 근태 기록 목록 (일자, 출근시간, 퇴근시간, 근무시간)
+
+import { Link as RouterLink } from 'react-router-dom';
 import { useState } from 'react';
+
 import {
   DataGrid,
   type GridColDef,
@@ -14,7 +17,7 @@ import { Link } from '@mui/material';
 type Status = 'Active' | 'Inactive';
 
 interface Attendance {
-  id: number;
+  id: number; 
   name: string;
   department: string;
   position: string; 
@@ -46,7 +49,8 @@ const columns: GridColDef<Attendance>[] = [
     minWidth: 130,
     renderCell: ({ row }: GridRenderCellParams<Attendance>) => (
       <Link
-        href={`/attendance/${row.id}`}
+        component={RouterLink}
+        to={`/attend/${row.id}`}
         underline="hover"
         color="primary"
         sx={{ cursor: 'pointer' }}
@@ -74,7 +78,7 @@ const columns: GridColDef<Attendance>[] = [
   },
 ];
 
-export default function PeriodAttendanceList() {
+export default function AttendanceList() {
   const [pageSize, setPageSize] = useState(10);
   return (
     <Paper sx={{ height: '100%', width: '100%' }}>
