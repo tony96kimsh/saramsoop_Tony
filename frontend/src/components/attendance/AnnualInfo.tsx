@@ -1,9 +1,17 @@
-// components/attendance/EmployeeAnnualInfo.tsx
+// components/attendance/AnnualInfo.tsx
 
 import React from 'react';
 import { Typography, Box, Paper } from '@mui/material';
+import { dummyPersonalLeave } from './attendDummy';
 
-function EmployeeAnnualInfo() {
+
+interface AnnualInfoProps {
+  userId: number;
+}
+
+function AnnualInfo({ userId }: AnnualInfoProps) {
+  const leave = dummyPersonalLeave.find((item) => item.user_id === userId);
+
   return (
     <>
       <Typography variant="h6" fontWeight="bold" gutterBottom sx={{ mt: 4 }}>
@@ -42,4 +50,4 @@ function EmployeeAnnualInfo() {
   );
 }
 
-export default EmployeeAnnualInfo;
+export default AnnualInfo;

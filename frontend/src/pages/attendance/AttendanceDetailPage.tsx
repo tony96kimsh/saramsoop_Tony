@@ -1,12 +1,13 @@
-// pages/AttendancePage.tsx
-import React from 'react';
-import { Typography, Box } from '@mui/material';
-import AttendanceTabs from '../../components/attendance/AttendanceTabs';
-import AnnualInfo from '../../components/attendance/AnnualInfo';
-import AttendanceDetail from '../../components/attendance/AttendanceDetail';
-import AttendanceList from '../../components/attendance/AttendanceList';
+import { Box, Typography } from "@mui/material";
+import AnnualInfo from "../../components/attendance/AnnualInfo";
+import AttendanceDetail from "../../components/attendance/AttendanceDetail";
+import { useParams } from "react-router-dom";
 
-function AttendancePage() {
+
+const AttendanceDetailPage = () => {
+   const { id } = useParams();
+    
+
   return (
     // 전체 너비를 차지하는 래퍼
     <Box
@@ -33,21 +34,14 @@ function AttendancePage() {
           component="h2"
           fontWeight="bold"
           sx={{ mb: 4 }}
-        >
-          근태관리
-        </Typography>
+        > 
+          근태관리 
+        </Typography>               
 
-        <AttendanceTabs />
-        
-        {/* 근태 상세 */}
+        {/* 직원 근태 상세 */}
         <Box sx={{ mt: 3 }}>
-          <AnnualInfo />
-          <AttendanceDetail />
-        </Box>
-
-        {/* 근태관리, 팀 근태관리 */}
-        <Box sx={{ mt: 3 }}>
-          <AttendanceList />
+          <AnnualInfo userId={userId} />
+          <AttendanceDetail userId={userId} />
         </Box>
 
       </Box>
@@ -55,4 +49,4 @@ function AttendancePage() {
   );
 }
 
-export default AttendancePage;
+export default AttendanceDetailPage;
