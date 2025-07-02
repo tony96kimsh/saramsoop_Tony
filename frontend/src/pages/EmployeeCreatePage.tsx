@@ -5,7 +5,7 @@ import {
 import SaveIcon from '@mui/icons-material/Save';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
-import { useEmployees } from '../components/useEmployees';
+import { useEmployees } from '../components/EmployeeProvider';
 import { useState } from 'react';
 import type { EmployeeDetail } from '../mock/Employees';
 

@@ -8,8 +8,8 @@ import SaveIcon from '@mui/icons-material/Save';
 import CloseIcon from '@mui/icons-material/Close';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import type { EmployeeDetail } from '../mock/Employees';
-import Header from '../components/header';
-import { useEmployees } from '../components/useEmployees';
+import Header from '../components/Header';
+import { useEmployees } from '../components/EmployeeProvider';
 import { useEffect, useState } from 'react';
 
 export default function EmployeeDetailPage() {
