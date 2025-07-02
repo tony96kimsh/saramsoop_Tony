@@ -16,6 +16,7 @@ interface TableProps {
 
 function makeColumns(goDetail: (id: number) => void, showActions = true): GridColDef<Employee>[] {
   const base: GridColDef<Employee>[] = [
+    { field: 'id', headerName: '사원번호', flex: 0.3, minWidth: 70},
     { field: 'name', headerName: '이름', flex: 0.6, minWidth: 120 },
     { field: 'position', headerName: '직급', flex: 0.5, minWidth: 90 },
     { field: 'email', headerName: '이메일', flex: 1.2, minWidth: 180 },
