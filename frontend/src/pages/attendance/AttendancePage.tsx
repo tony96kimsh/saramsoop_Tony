@@ -2,9 +2,9 @@
 import React from 'react';
 import { Typography, Box } from '@mui/material';
 import AttendanceTabs from '../../components/attendance/AttendanceTabs';
-import MyAttendanceList from '../../components/attendance/MyAttendanceList';
-import MyAnnualInfo from '../../components/attendance/MyAnnualInfo';
-import AttendanceList from '../../components/attendance/AttendanceList';
+import MyAnnualInfo from '../../components/attendance/EmployeeAnnualInfo';
+import EmployeeAttendanceList from '../../components/attendance/EmployeeAttendanceList';
+import PeriodAttendanceList from '../../components/attendance/PeriodAttendanceList';
 
 function AttendancePage() {
   return (
@@ -41,12 +41,12 @@ function AttendancePage() {
         {/* 내 근태 */}
         <Box sx={{ mt: 3 }}>
           <MyAnnualInfo />
-          <MyAttendanceList />
+          <EmployeeAttendanceList />
         </Box>
 
-        {/* 근태관리 */}
+        {/* 근태관리, 팀 근태관리 */}
         <Box sx={{ mt: 3 }}>
-          <AttendanceList />
+          <PeriodAttendanceList />
         </Box>
 
       </Box>

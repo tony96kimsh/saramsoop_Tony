@@ -1,9 +1,9 @@
-// components/attendance/MyAnnualInfo.tsx
+// components/attendance/EmployeeAnnualInfo.tsx
 
 import React from 'react';
 import { Typography, Box, Paper } from '@mui/material';
 
-function MyAnnualInfo() {
+function EmployeeAnnualInfo() {
   return (
     <>
       <Typography variant="h6" fontWeight="bold" gutterBottom sx={{ mt: 4 }}>
@@ -42,4 +42,4 @@ function MyAnnualInfo() {
   );
 }
 
-export default MyAnnualInfo;
+export default EmployeeAnnualInfo;

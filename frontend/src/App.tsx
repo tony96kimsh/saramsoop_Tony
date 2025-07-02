@@ -1,16 +1,18 @@
-// App.tsx
 
-import React from 'react';
-import { CssBaseline, Container } from '@mui/material';
-import AttendancePage from './pages/attendance/AttendancePage';
+
+import { BrowserRouter } from 'react-router-dom'
+import './App.css'
+import Header from './components/Layout/Header'
+import LoginPage from './pages/LoginPage'
 
 function App() {
+
   return (
     <>
-      <CssBaseline />
-      <Container maxWidth="xl" sx={{ mt: 10 }}>
-        <AttendancePage />
-      </Container>
+      <BrowserRouter>
+        <Header />
+        <LoginPage />
+      </BrowserRouter>
     </>
   );
 }

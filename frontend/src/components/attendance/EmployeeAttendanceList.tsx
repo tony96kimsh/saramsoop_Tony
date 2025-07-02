@@ -24,7 +24,7 @@ const attendanceData = [
   { date: '2024-07-29', in: '09:35 AM', out: '06:00 PM', total: '8시간 25분', status: '지각' },
 ];
 
-function MyAttendanceList() {
+function EmployeeAttendanceList() {
   const [page, setPage] = React.useState(1);
   const rowsPerPage = 5;
 
@@ -108,4 +108,4 @@ function MyAttendanceList() {
   );
 }
 
-export default MyAttendanceList;
+export default EmployeeAttendanceList;

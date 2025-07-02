@@ -1,5 +1,5 @@
-// Components > attendance > AttendanceList.tsx
-
+// Components > attendance > PeriodAttendanceList.tsx
+// 기간별 근태 기록 목록 (일자, 출근시간, 퇴근시간, 근무시간)
 import { useState } from 'react';
 import {
   DataGrid,
@@ -74,7 +74,7 @@ const columns: GridColDef<Attendance>[] = [
   },
 ];
 
-export default function AdminAttendanceTable() {
+export default function PeriodAttendanceList() {
   const [pageSize, setPageSize] = useState(10);
   return (
     <Paper sx={{ height: '100%', width: '100%' }}>
