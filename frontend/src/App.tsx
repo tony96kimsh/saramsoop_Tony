@@ -1,21 +1,18 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import AdminEmployeePage from './pages/AdminEmployeeManagement';
-import TeamEmployeePage from './pages/TeamEmployeeManagement';
-import MyEmployeePage from './pages/MyEmployeeManagement';
-import EmployeeDetailPage from './pages/EmployeeDetailPage';
-import EmployeeCreatePage from './pages/EmployeeCreatePage';
+import { BrowserRouter } from 'react-router-dom'
+import './App.css'
+import Header from './components/Layout/Header'
+import LoginPage from './pages/LoginPage'
 
+function App() {
 
-export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/adminEmployee" element={<AdminEmployeePage />} />
-        <Route path="/teamEmployee" element={<TeamEmployeePage />} />
-        <Route path="/myEmployee" element={<MyEmployeePage />} />
-        <Route path="/employees/:id" element={<EmployeeDetailPage />} />
-        <Route path="/employees/create" element={<EmployeeCreatePage />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Header />
+        <LoginPage />
+      </BrowserRouter>
+    </>
   );
 }
+
+export default App;

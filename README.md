@@ -1,7 +1,51 @@
 # HR Management System
 인사관리 시스템 
 
-💡 제발 git 올리기 전에 PULL 꼭 해주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 제발 git 올리기 전에 PULL 꼭 해주세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+## 💡 git 주의사항 및 명령어 💡
+```
+⭐주의사항:
+- git pull을 먼저 한다.
+- 공통파일(App.tsx, package.json, index.css .)은 올리지 않는다.(건들지 말라)
+
+⭐ saramsoop git 에 올릴 때 순서!!
+
+1.  원격에 upstream 이름의 경로를 등록한다.
+git remote add upstream https://github.com/cyeongb/saramsoop.git
+
+2. 본인이 작업한 파일 만! 변경사항에 올린다.(git add 해서 모두 추가 하지 말고 파일 별로 추가!)
+git add 파일명
+또는 vs code 에서 해당 파일만 + 버튼 눌러서 진행.
+
+3. 다음 명령어 진행 시 원격이 현재 어디인지 확인한다. (upstream거를 가져오는지 본인 main거를 가져오는지)
+git remote -v
+
+4. upstream 경로의 변경사항들을 가져온다.
+git fetch upstream
+
+5. 변경사항을 가져온 후 상태를 확인한다(충돌이 날 지)
+git status
+
+* 만약 현재 branch 가 main이 아닐 경우에만 해당 명령어를 사용한다.
+git checkout main
+
+6. upstream에서 fetch 하여 들고온 변경사항들을 본인거(main)랑  병합한다.
+git merge upstream/main
+
+7. 본인 main에 올린다. 
+git push origin main
+
+8. 올린 후에 github 에 와서 "pull request" 진행(충돌 없는거 확인 후에 진행)
+
+9. pull request 올리면  slack 에 올렸다고 글 남깁니다
+
+10. 변경사항 확인(충돌 확인)해서  "confirm merge" 진행
+
+
+
+```
 
 ## 🏗️ 프로젝트 구조
 
