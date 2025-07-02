@@ -16,8 +16,8 @@ import {
 import { Grid } from '@mui/material';
 import { PictureAsPdf, Check, Close } from '@mui/icons-material';
 import { useParams, useNavigate } from 'react-router-dom';
-import type { Approval } from '../types/approval';
-import { mockUser } from '../data/mockData';
+import type { Approval } from '../../types/approval';
+import { mockUser } from '../../data/mockData';
 
 const ApprovalDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();

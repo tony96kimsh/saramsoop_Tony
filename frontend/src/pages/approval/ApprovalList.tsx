@@ -21,8 +21,8 @@ import {
 } from '@mui/material';
 import { Download, Add } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import  type { Approval } from '../types/approval';
-import { mockUser } from '../data/mockData';
+import  type { Approval } from '../../types/approval';
+import { mockUser } from '../../data/mockData';
 
 const ApprovalList: React.FC = () => {
   const navigate = useNavigate();
