@@ -1,27 +1,42 @@
-import MyEmployeePage from '../pages/employee/MyEmployeeManagement';
-import AdminEmployeePage from '../pages/employee/AdminEmployeeManagement';
-import ManagerPage from '../pages/employee/TeamEmployeeManagement';
-import { useEmployees } from '../components/EmployeeProvider';
+import type { RouteObject } from 'react-router-dom';
+import EmployeePageRouter from '../pages/employee/EmployeePageRouter';
+import EmployeeCreatePage from '../pages/employee/EmployeeCreatePage';
+import EmployeeDetailPage from '../pages/employee/EmployeeDetailPage';
+import Layout from '../components/layout/Layout';
+import ProtectedRoute from '../components/auth/ProtectedRoute';
 
-export default function EmployeePageRouter() {
-  const { employees } = useEmployees();
-  const currentUserId = 1; // TODO: 로그인된 사용자 ID 가져오기
-  // 현재 1 = 팀장, 11 = 관리자, 그 외 14까지는 사원
-  const me = employees.find(e => e.id === currentUserId);
+const EmployeeRoutes: RouteObject[] = [
+  {
+    path: '/employeepage',
+    element: (
+      <ProtectedRoute>
+        <Layout>
+          <EmployeePageRouter />
+        </Layout>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/employee/create',
+    element: (
+      <ProtectedRoute>
+        <Layout>
+          <EmployeeCreatePage />
+        </Layout>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/employee/:id',
+    element: (
+      <ProtectedRoute>
+        <Layout>
+          <EmployeeDetailPage />
+        </Layout>
+      </ProtectedRoute>
+    ),
+  },
+];
 
-  if (!me) return <div>사용자 정보를 불러올 수 없습니다.</div>;
 
-  if (!['Admin', 'Manager', 'Employee'].includes(me.role)) {
-  return <div>접근 권한이 없습니다.</div>;
-  }
-
-  switch (me.role) {
-    case 'Admin':
-      return <AdminEmployeePage />;
-    case 'Manager':
-      return <ManagerPage />;
-    case 'Employee':
-    default:
-      return <MyEmployeePage />;
-  }
-}
+export default EmployeeRoutes;

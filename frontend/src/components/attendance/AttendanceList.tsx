@@ -1,5 +1,5 @@
 // Components > attendance > AttendanceList.tsx
-// 기간별 근태 기록 목록 (일자, 출근시간, 퇴근시간, 근무시간)
+// 기간별 근태 기록 목록 (이름, 부서, 직급, 출퇴근시간, 근무시간, 상태)
 
 import { Link as RouterLink } from 'react-router-dom';
 import { useState } from 'react';
@@ -13,41 +13,71 @@ import {
 import { Paper, Chip } from '@mui/material';
 import { Link } from '@mui/material';
 
-/* ---------- 타입 & 더미 데이터 ---------- */
+import { dummyUsers, dummyAttendance } from './AttendDummy';
+
+/* ---------- 타입 ---------- */
 type Status = 'Active' | 'Inactive';
 
-interface Attendance {
-  id: number; 
+interface RowData {
+  id: number;
   name: string;
   department: string;
-  position: string; 
+  position: string;
   checkIn: string;
   checkOut: string;
   workTime: string;
   status: Status;
 }
 
-const rows: Attendance[] = [
-  { id: 1, name: '이선우', department: '엔지니어링', position: '사원', checkIn: '09:05', checkOut: '18:00', workTime: '8시간 55분', status: 'Active' },
-  { id: 2, name: '김민지', department: '마케팅', position: '대리', checkIn: '09:00', checkOut: '18:10', workTime: '9시간 10분', status: 'Active' },
-  { id: 3, name: '박지훈', department: '영업', position: '과장', checkIn: '-', checkOut: '-', workTime: '-', status: 'Inactive' },
-  { id: 4, name: '최수아', department: '제품', position: '대리', checkIn: '08:55', checkOut: '18:05', workTime: '9시간 10분', status: 'Active' },
-  { id: 5, name: '정재현', department: '엔지니어링', position: '차장', checkIn: '09:15', checkOut: '17:50', workTime: '8시간 35분', status: 'Active' },
-  { id: 6, name: '서지우', department: '디자인', position: '사원', checkIn: '09:00', checkOut: '18:00', workTime: '9시간 0분', status: 'Active' },
-  { id: 7, name: '한도윤', department: '품질관리', position: '과장', checkIn: '09:10', checkOut: '18:20', workTime: '9시간 10분', status: 'Active' },
-  { id: 8, name: '오하늘', department: '고객지원', position: '사원', checkIn: '09:30', checkOut: '18:10', workTime: '8시간 40분', status: 'Active' },
-  { id: 9, name: '장윤서', department: '회계', position: '대리', checkIn: '08:50', checkOut: '18:00', workTime: '9시간 10분', status: 'Active' },
-  { id: 10, name: '이준호', department: '기획', position: '부장', checkIn: '결근', checkOut: '결근', workTime: '0시간', status: 'Inactive' },
-];
+/* ---------- 출근시간, 퇴근시간, 근무시간 계산 ---------- */
+function formatTime(datetime: string | null): string {
+  if (!datetime) return '-';
+  const date = new Date(datetime);
+  return date.toTimeString().slice(0, 5); // HH:MM
+}
 
+function calcWorkTime(inTime: string | null, outTime: string | null): string {
+  if (!inTime || !outTime) return '-';
 
-const columns: GridColDef<Attendance>[] = [
+  const inDate = new Date(inTime);
+  const outDate = new Date(outTime);
+  const diffMs = outDate.getTime() - inDate.getTime();
+  const diffMin = Math.floor(diffMs / 60000);
+
+  const hours = Math.floor(diffMin / 60);
+  const minutes = diffMin % 60;
+
+  return `${hours}시간 ${minutes}분`;
+}
+
+/* ---------- rows 생성 ---------- */
+const rows: RowData[] = dummyUsers.map((user) => {
+  const records = dummyAttendance
+    .filter((a) => a.user_id === user.id)
+    .sort((a, b) => (b.attendance_date > a.attendance_date ? 1 : -1));
+
+  const recent = records[0];
+
+  return {
+    id: user.id,
+    name: user.name,
+    department: user.department,
+    position: user.position,
+    checkIn: formatTime(recent?.clock_in_time ?? null),
+    checkOut: formatTime(recent?.clock_out_time ?? null),
+    workTime: calcWorkTime(recent?.clock_in_time ?? null, recent?.clock_out_time ?? null),
+    status: user.status === 'ACTIVE' ? 'Active' : 'Inactive',
+  };
+});
+
+/* ---------- columns ---------- */
+const columns: GridColDef<RowData>[] = [
   {
     field: 'name',
     headerName: '이름',
     flex: 1,
     minWidth: 130,
-    renderCell: ({ row }: GridRenderCellParams<Attendance>) => (
+    renderCell: ({ row }: GridRenderCellParams<RowData>) => (
       <Link
         component={RouterLink}
         to={`/attend/${row.id}`}
@@ -68,7 +98,7 @@ const columns: GridColDef<Attendance>[] = [
     field: 'status',
     headerName: '상태',
     width: 120,
-    renderCell: ({ value }: GridRenderCellParams<Attendance, Status>) => (
+    renderCell: ({ value }: GridRenderCellParams<RowData, Status>) => (
       <Chip
         label={value === 'Active' ? '근무 중' : '휴직'}
         color={value === 'Active' ? 'success' : 'default'}
@@ -78,8 +108,10 @@ const columns: GridColDef<Attendance>[] = [
   },
 ];
 
+/* ---------- 컴포넌트 ---------- */
 export default function AttendanceList() {
   const [pageSize, setPageSize] = useState(10);
+
   return (
     <Paper sx={{ height: '100%', width: '100%' }}>
       <DataGrid
