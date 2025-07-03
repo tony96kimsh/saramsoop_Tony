@@ -45,7 +45,7 @@ function AttendancePage() {
         <Box sx={{ mt: 3 }}>
           {/* 현재 로그인된 userId를 전달 */}
           <AnnualInfo userId={nowUser}/>
-          <AttendanceDetail />
+          <AttendanceDetail userId={nowUser} />
         </Box>
 
         {/* 근태관리, 팀 근태관리 */}
