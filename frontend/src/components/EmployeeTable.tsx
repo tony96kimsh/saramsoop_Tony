@@ -99,3 +99,4 @@ export default function EmployeeTable({ rows, onDetail, showActions = true, show
     </>
   );
 }
+ 

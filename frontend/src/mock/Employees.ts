@@ -1,4 +1,5 @@
-// src/mock/employees.ts
+import type { Role } from '../types/role';
+
 export type Status = 'Active' | 'Inactive';
 
 /** 리스트에서 쓰이는 기본 정보 */
@@ -13,7 +14,7 @@ export interface Employee {
 
 /** 상세 페이지에 필요한 추가 정보 */
 export interface EmployeeDetail extends Employee {
-  role: string;
+  role: Role;
   birth: string;
   regNo: string;
   phone: string;
@@ -36,7 +37,7 @@ export const employees: EmployeeDetail[] = [
     email: 'sunwoo.lee@example.com',
     department: '엔지니어링',
     status: 'Active',
-    role: 'Tech Lead',
+    role: 'Manager',
     birth: '1988-03-12',
     regNo: '880312-1******',
     phone: '010-1000-0001',
@@ -56,7 +57,7 @@ export const employees: EmployeeDetail[] = [
     email: 'minji.kim@example.com',
     department: '마케팅',
     status: 'Active',
-    role: 'Marketing Planner',
+    role: 'Employee',
     birth: '1992-07-25',
     regNo: '920725-2******',
     phone: '010-1000-0002',
@@ -76,7 +77,7 @@ export const employees: EmployeeDetail[] = [
     email: 'jihoon.park@example.com',
     department: '영업',
     status: 'Inactive',
-    role: 'Sales Rep',
+    role: 'Employee',
     birth: '1995-11-03',
     regNo: '951103-1******',
     phone: '010-1000-0003',
@@ -96,7 +97,7 @@ export const employees: EmployeeDetail[] = [
     email: 'sua.choi@example.com',
     department: '제품',
     status: 'Active',
-    role: 'Product Designer',
+    role: 'Manager',
     birth: '1996-02-17',
     regNo: '960217-2******',
     phone: '010-1000-0004',
@@ -116,7 +117,7 @@ export const employees: EmployeeDetail[] = [
     email: 'jaehyun.jung@example.com',
     department: '엔지니어링',
     status: 'Active',
-    role: 'Backend Developer',
+    role: 'Employee',
     birth: '1991-08-09',
     regNo: '910809-1******',
     phone: '010-1000-0005',
@@ -136,7 +137,7 @@ export const employees: EmployeeDetail[] = [
     email: 'dohyun.jang@example.com',
     department: '엔지니어링',
     status: 'Active',
-    role: 'QA Engineer',
+    role: 'Employee',
     birth: '1998-12-01',
     regNo: '981201-1******',
     phone: '010-1000-0006',
@@ -156,7 +157,7 @@ export const employees: EmployeeDetail[] = [
     email: 'ara.oh@example.com',
     department: '엔지니어링',
     status: 'Active',
-    role: 'Frontend Intern',
+    role: 'Employee',
     birth: '2000-04-28',
     regNo: '000428-2******',
     phone: '010-1000-0007',
@@ -176,7 +177,7 @@ export const employees: EmployeeDetail[] = [
     email: 'doyoon.lee@example.com',
     department: '엔지니어링',
     status: 'Active',
-    role: 'DevOps Engineer',
+    role: 'Employee',
     birth: '1994-06-18',
     regNo: '940618-1******',
     phone: '010-1000-0008',
@@ -196,7 +197,7 @@ export const employees: EmployeeDetail[] = [
     email: 'seoyoung.kim@example.com',
     department: '엔지니어링',
     status: 'Active',
-    role: 'Data Analyst',
+    role: 'Employee',
     birth: '1997-10-05',
     regNo: '971005-2******',
     phone: '010-1000-0009',
@@ -216,7 +217,7 @@ export const employees: EmployeeDetail[] = [
     email: 'sunho.park@example.com',
     department: '엔지니어링',
     status: 'Active',
-    role: 'Security Engineer',
+    role: 'Employee',
     birth: '1993-09-21',
     regNo: '930921-1******',
     phone: '010-1000-0010',
@@ -236,7 +237,7 @@ export const employees: EmployeeDetail[] = [
     email: 'jieun.choi@example.com',
     department: '인사',
     status: 'Active',
-    role: 'HR Specialist',
+    role: 'Admin',
     birth: '1990-11-14',
     regNo: '901114-2******',
     phone: '010-1000-0011',
@@ -256,7 +257,7 @@ export const employees: EmployeeDetail[] = [
     email: 'hajun.yoon@example.com',
     department: '재무',
     status: 'Active',
-    role: 'Accountant',
+    role: 'Employee',
     birth: '1996-01-30',
     regNo: '960130-1******',
     phone: '010-1000-0012',
@@ -276,7 +277,7 @@ export const employees: EmployeeDetail[] = [
     email: 'haein.seo@example.com',
     department: '운영',
     status: 'Active',
-    role: 'Operations Manager',
+    role: 'Employee',
     birth: '1991-02-11',
     regNo: '910211-2******',
     phone: '010-1000-0013',
@@ -296,7 +297,7 @@ export const employees: EmployeeDetail[] = [
     email: 'junho.moon@example.com',
     department: '고객지원',
     status: 'Active',
-    role: 'CS Agent',
+    role: 'Employee',
     birth: '1999-07-07',
     regNo: '990707-1******',
     phone: '010-1000-0014',
