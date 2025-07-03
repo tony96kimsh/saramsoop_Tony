@@ -37,9 +37,11 @@ git merge upstream/main
 7. 본인 main에 올린다. 
 git push origin main
 
-8. 올린 후에 github 에 와서 sync 진행(충돌 없는거 확인 후에 진행)
+8. 올린 후에 github 에 와서 "pull request" 진행(충돌 없는거 확인 후에 진행)
 
 9. pull request 올리면  slack 에 올렸다고 글 남깁니다
+
+10. 변경사항 확인(충돌 확인)해서  "confirm merge" 진행
 
 
 
