@@ -50,7 +50,7 @@ export default function EmployeeCreatePage() {
 
   const handleSubmit = () => {
     setEmployees(prev => [...prev, form]);
-    navigate('/adminEmployee'); // 리스트 페이지로 이동
+    navigate('/employeepage'); // 리스트 페이지로 이동
   };
 
   const rows: Array<[string, keyof EmployeeDetail]> = [

@@ -80,7 +80,7 @@ export default function TeamEmployeePage() {
             <Paper sx={{ maxWidth: 'xl', p: 3, mb: 5 }}>
               <EmployeeTable
                 rows={teamMembers}
-                onDetail={(id) => navigate(`/employees/${id}`, { state: { canEdit: false } })}
+                onDetail={(id) => navigate(`/employee/${id}`, { state: { canEdit: false } })}
                 showCheckbox={false}
               />
             </Paper>

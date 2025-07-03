@@ -76,7 +76,7 @@ export default function AdminEmployeePage() {
                 variant="outlined"
                 color="primary"
                 startIcon={<AddIcon />}
-                onClick={() => navigate('/employees/create')}
+                onClick={() => navigate('/employee/create')}
                 sx={{ backgroundColor: '#fff', '&:hover': { backgroundColor: '#1976D2', color: '#fff' } }}
               >
                 직원 추가
@@ -92,7 +92,7 @@ export default function AdminEmployeePage() {
             </Stack>
           </Stack>
           <Paper sx={{ p: 3 }}>
-            <EmployeeTable rows={employees} onDetail={(id) => navigate(`/employees/${id}`, { state: { canEdit: true } })} />
+            <EmployeeTable rows={employees} onDetail={(id) => navigate(`/employee/${id}`, { state: { canEdit: true } })} />
           </Paper>
         </>
       )}
