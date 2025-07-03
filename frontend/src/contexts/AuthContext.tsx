@@ -1,22 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
+import type { AuthContextType, JwtPayload, User } from '../types/auth';
 
-interface User {
-  username: string;
-  role: string;
-}
-
-interface AuthContextType {
-  user: User | null;
-  setUser: (user: User | null) => void;
-  logout: () => void;
-}
-
-interface JwtPayload {
-  username: string;
-  role: string;
-  exp: number; // UNIX timestamp (seconds)
-}
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 

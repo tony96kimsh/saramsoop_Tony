@@ -2,12 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { jwtDecode } from 'jwt-decode';
+import type { JwtPayload } from '../types/auth';
 
-interface JwtPayload {
-  username: string;
-  role: string;
-  exp: number;
-}
 
 export const useLogin = () => {
   const [loading, setLoading] = useState(false);
