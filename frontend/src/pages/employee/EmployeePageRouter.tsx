@@ -1,7 +1,7 @@
 import MyEmployeePage from './MyEmployeeManagement';
 import AdminEmployeePage from './AdminEmployeeManagement';
 import ManagerPage from './TeamEmployeeManagement';
-import { useEmployees } from '../../components/EmployeeProvider';
+import { useEmployees } from '../../components/employee/EmployeeProvider';
 
 export default function EmployeePageRouter() {
   const { employees } = useEmployees();

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
-import { employees as seed } from '../mock/Employees';
-import type { EmployeeDetail } from '../mock/Employees';
+import { employees as seed } from '../../mock/Employees';
+import type { EmployeeDetail } from '../../mock/Employees';
 
 interface EmployeeCtx {
   employees: EmployeeDetail[];

@@ -8,7 +8,7 @@ import {
 import SaveIcon from '@mui/icons-material/Save';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
-import { useEmployees } from '../../components/EmployeeProvider';
+import { useEmployees } from '../../components/employee/EmployeeProvider';
 import { useState } from 'react';
 import type { EmployeeDetail } from '../../mock/Employees';
 import type { Role } from '../../types/role';
