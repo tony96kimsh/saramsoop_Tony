@@ -3,13 +3,6 @@
 import React from 'react';
 import { Typography, Box } from '@mui/material';
 import AttendanceTabs from '../../components/attendance/AttendanceTabs';
-<<<<<<< HEAD
-import MyAnnualInfo from '../../components/attendance/EmployeeAnnualInfo';
-import EmployeeAttendanceList from '../../components/attendance/EmployeeAttendanceList';
-import PeriodAttendanceList from '../../components/attendance/PeriodAttendanceList';
-
-function AttendancePage() {
-=======
 import AnnualInfo from '../../components/attendance/AnnualInfo';
 import AttendanceDetail from '../../components/attendance/AttendanceDetail';
 import AttendanceList from '../../components/attendance/AttendanceList';
@@ -38,8 +31,6 @@ function AttendancePage() {
     <Box
       sx={{
         width: '100vw',
-<<<<<<< HEAD
-=======
         maxWidth: '100%',
         minHeight: '100vh',
         display: 'flex',
