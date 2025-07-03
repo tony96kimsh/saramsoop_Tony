@@ -1,11 +1,18 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
-const ProtectedRoute = ({ children }: { children: React.JSX.Element }) => {
-  const token = localStorage.getItem('token');
+interface ProtectedRouteProps {
+  children: React.ReactElement;
+  requiredRoles?: string[];
+}
 
-  if (!token) {
-    return <Navigate to="/" replace />;
+const ProtectedRoute = ({ children, requiredRoles }: ProtectedRouteProps) => {
+  const { user } = useAuth();
+
+  if (!user) return <Navigate to="/" replace />;
+  if (requiredRoles && !requiredRoles.includes(user.role)) {
+    return <Navigate to="/unauthorized" replace />;
   }
 
   return children;

@@ -38,6 +38,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           localStorage.removeItem('token'); // 만료된 토큰 제거
         }
       } catch (err) {
+        console.log(err);
         localStorage.removeItem('token'); // 잘못된 토큰 제거
       }
     }

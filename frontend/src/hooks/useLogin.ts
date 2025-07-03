@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { jwtDecode } from 'jwt-decode';
+
+interface JwtPayload {
+  username: string;
+  role: string;
+  exp: number;
+}
 
 export const useLogin = () => {
   const [loading, setLoading] = useState(false);
@@ -26,10 +33,23 @@ export const useLogin = () => {
         localStorage.setItem('token', data.token);
 
         // ✅ 사용자 상태 저장
-        setUser({ username: data.username, role: data.role });
+        const decoded = jwtDecode<JwtPayload>(data.token);
+        setUser({ username: decoded.username, role: decoded.role });
 
-        // ✅ 홈으로 이동
-        navigate('/home');
+        // 역할에 따라 페이지 이동
+        switch (decoded.role) {
+          case 'Admin':
+            navigate('/admin');
+            break;
+          case 'Manager':
+            navigate('/manager');
+            break;
+          case 'Employee':
+            navigate('/employee');
+            break;
+          default:
+            navigate('/unauthorized');
+        }
       } else {
         setError('아이디 또는 비밀번호 오류');
       }
