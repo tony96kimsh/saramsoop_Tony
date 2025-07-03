@@ -3,37 +3,37 @@ import EmployeePageRouter from '../pages/employee/EmployeePageRouter';
 import EmployeeCreatePage from '../pages/employee/EmployeeCreatePage';
 import EmployeeDetailPage from '../pages/employee/EmployeeDetailPage';
 import Layout from '../components/layout/Layout';
-import ProtectedRoute from '../components/auth/ProtectedRoute';
+// import ProtectedRoute from '../components/auth/ProtectedRoute';
 
 const EmployeeRoutes: RouteObject[] = [
   {
     path: '/employeepage',
     element: (
-      <ProtectedRoute>
+      // <ProtectedRoute>
         <Layout>
           <EmployeePageRouter />
         </Layout>
-      </ProtectedRoute>
+      // </ProtectedRoute>
     ),
   },
   {
     path: '/employee/create',
     element: (
-      <ProtectedRoute>
+      // <ProtectedRoute>
         <Layout>
           <EmployeeCreatePage />
         </Layout>
-      </ProtectedRoute>
+      // </ProtectedRoute>
     ),
   },
   {
     path: '/employee/:id',
     element: (
-      <ProtectedRoute>
+      // <ProtectedRoute>
         <Layout>
           <EmployeeDetailPage />
         </Layout>
-      </ProtectedRoute>
+      // </ProtectedRoute>
     ),
   },
 ];

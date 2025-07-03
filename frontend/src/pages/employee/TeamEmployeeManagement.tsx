@@ -5,9 +5,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import CloseIcon from '@mui/icons-material/Close';
 // import Header from '../components/Layout/Header';
-import EmployeeTable from '../../components/EmployeeTable';
+import EmployeeTable from '../../components/employee/EmployeeTable';
 import { useNavigate } from 'react-router-dom';
-import { useEmployees } from '../../components/EmployeeProvider';
+import { useEmployees } from '../../components/employee/EmployeeProvider';
 import { useState, useEffect } from 'react';
 import type { EmployeeDetail } from '../../mock/Employees';
 
@@ -80,7 +80,7 @@ export default function TeamEmployeePage() {
             <Paper sx={{ maxWidth: 'xl', p: 3, mb: 5 }}>
               <EmployeeTable
                 rows={teamMembers}
-                onDetail={(id) => navigate(`/employees/${id}`, { state: { canEdit: false } })}
+                onDetail={(id) => navigate(`/employee/${id}`, { state: { canEdit: false } })}
                 showCheckbox={false}
               />
             </Paper>

@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Typography, Box, IconButton, Menu, MenuItem, Avatar } 
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo2.png';
+import logo from '/logo2.png';
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -40,10 +40,10 @@ const Header = () => {
 
           {/* 메뉴 항목들 */}
           <Box display="flex" alignItems="center" gap={3} sx={{ ml: 4, mt: '5px' }}>
-            <Link to="/employees" style={{ textDecoration: 'none' }}>
+            <Link to="/employeepage" style={{ textDecoration: 'none' }}>
               <Typography variant="body2" color="#fff">직원관리</Typography>
             </Link>
-            <Link to="/attendance" style={{ textDecoration: 'none' }}>
+            <Link to="/attend" style={{ textDecoration: 'none' }}>
               <Typography variant="body2" color="#fff">근태관리</Typography>
             </Link>
             <Link to="/approvals" style={{ textDecoration: 'none' }}>
