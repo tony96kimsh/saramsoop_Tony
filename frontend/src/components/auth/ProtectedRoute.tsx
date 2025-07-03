@@ -8,7 +8,13 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute = ({ children, requiredRoles }: ProtectedRouteProps) => {
-  const { user } = useAuth();
+ // const { user } = useAuth();
+  //임시로 테스트용으로 넣음
+  const user = {
+    role:'Admin'
+    //Employee
+    //Manager
+  }
 
   if (!user) return <Navigate to="/" replace />;
   if (requiredRoles && !requiredRoles.includes(user.role)) {
