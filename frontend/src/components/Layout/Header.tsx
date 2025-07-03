@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Typography, Box, IconButton, Menu, MenuItem, Avatar } 
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo2.png';
+import logo from '/logo2.png';
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
