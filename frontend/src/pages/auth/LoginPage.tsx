@@ -1,6 +1,7 @@
 import { Box, Paper, Typography } from '@mui/material';
 import LoginForm from '../../components/auth/LoginForm';
 import { useLogin } from '../../hooks/useLogin';
+import '../../style/LoginPage.css';
 
 const LoginPage = () => {
   const { login, loading, error } = useLogin();
