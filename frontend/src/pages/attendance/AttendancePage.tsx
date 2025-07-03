@@ -64,11 +64,11 @@ function AttendancePage() {
           )}
 
           {tabs[tabIndex]?.key === 'admin' && (
-            <AttendanceList userId={nowUser} type="admin" />
+            <AttendanceList />
           )}
 
           {tabs[tabIndex]?.key === 'manager' && (
-            <AttendanceList userId={nowUser} type="manager" />
+            <AttendanceList />
           )}
         </Box>
       </Box>

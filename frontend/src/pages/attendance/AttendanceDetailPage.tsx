@@ -23,7 +23,7 @@ const AttendanceDetailPage = () => {
         py: 4,
         boxSizing: 'border-box', // 패딩 포함 너비 계산
       }}
-    >1
+    >
       {/* 실제 콘텐츠 영역 - 가운데 정렬됨 */}
       <Box
         sx={{
