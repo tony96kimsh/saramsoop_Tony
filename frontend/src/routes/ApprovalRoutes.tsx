@@ -1,27 +1,53 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { type RouteObject } from 'react-router-dom';
 import Approvals from '../pages/approval/ApprovalList';
-import LoginPage from '../pages/auth/LoginPage';
 import ApprovalAdmin from '../pages/approval/ApprovalAdmin';
 import ApprovalDetail from '../pages/approval/ApprovalDetail';
 import ApprovalRequest from '../pages/approval/ApprovalRequest';
-import Header from '../components/Layout/Header';
+import ProtectedRoute from '../components/auth/ProtectedRoute';
+import Layout from '../components/layout/Layout';
 
-const AppRouter = () => {
+const AppRouter: RouteObject[] = [
+  {
+    path: '/approvals',
+    element: (
+      <ProtectedRoute requiredRoles={['Employee']}>
+        <Layout>
+          <Approvals />
+        </Layout>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/approvalAdmin',
+    element: (
+      <ProtectedRoute requiredRoles={['Admin','Manager']}>
+        <Layout>
+          <ApprovalAdmin />
+        </Layout>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/approval/:id',
+    element: (
+      <ProtectedRoute requiredRoles={['Employee']}>
+        <Layout>
+          <ApprovalDetail />
+        </Layout>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/approvalRequest',
+    element: (
+      <ProtectedRoute requiredRoles={['Employee','Manager']}>
+        <Layout>
+          <ApprovalRequest />
+        </Layout>
+      </ProtectedRoute>
+    ),
+  },
+];
 
-  const location = useLocation();
-  const showHeader = location.pathname !== '/';
-  return (
-    <>
-    {showHeader && <Header />}
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/approvals" element={<Approvals />} />
-        <Route path="/approvalAdmin" element={<ApprovalAdmin />} />
-        <Route path="/approval/:id" element={<ApprovalDetail />} />
-        <Route path="/approvalRequest" element={<ApprovalRequest />} />
-      </Routes>
-    </>
-  );
-};
 
 export default AppRouter;
