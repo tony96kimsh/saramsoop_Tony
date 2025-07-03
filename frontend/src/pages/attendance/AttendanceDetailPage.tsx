@@ -1,3 +1,4 @@
+// AttendanceDetailPage.tsx
 import { Box, Typography } from "@mui/material";
 import AnnualInfo from "../../components/attendance/AnnualInfo";
 import AttendanceDetail from "../../components/attendance/AttendanceDetail";
@@ -6,7 +7,8 @@ import { useParams } from "react-router-dom";
 
 const AttendanceDetailPage = () => {
   const { id } = useParams();
-  const userId = id ? parseInt(id, 10) : null;
+  // id값 없을 경우 0으로 인지하여 없는 값이 됨
+  const userId = id ? parseInt(id, 10) : 0;
     
 
   return (
