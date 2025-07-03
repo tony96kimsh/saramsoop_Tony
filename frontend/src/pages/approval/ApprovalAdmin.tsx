@@ -1,4 +1,4 @@
-import { employees } from '../../mock/Employees';
+import { mockUsers } from '../../mock/IApproval';
 import ApprovalTable from '../../components/ApprovalTable';
 import { Box, Button, Paper, Stack, Toolbar, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -20,10 +20,10 @@ export default function ApprovalAdmin() {
               variant = "outlined"
               color = "primary"
               startIcon={<AddIcon/>}
-              onClick={() => navigate('/employees/create')}
+              onClick={() => navigate('/approval/request')}
               sx={{backgroundColor: '#fff', '&:hover': {backgroundColor: '#1976D2', color: '#fff', borderColor: '#2E6C4D'}}}
             >
-              직원 추가
+              결재 생성
             </Button>
             <Button variant = "outlined" color = "error" startIcon={<DeleteIcon />} sx={{backgroundColor: '#fff'}}
             >
@@ -33,7 +33,7 @@ export default function ApprovalAdmin() {
         </Toolbar>
         <Paper sx={{ p: 3 }}>
           <ApprovalTable 
-              rows={employees} 
+              rows={mockUsers} 
               onDetail={(id) => navigate(`/approval/${id}`, { state: { canEdit: true } })}
               dataType="user"
               showActions={true}

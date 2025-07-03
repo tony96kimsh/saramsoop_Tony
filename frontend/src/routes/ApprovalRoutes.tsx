@@ -38,9 +38,9 @@ const AppRouter: RouteObject[] = [
     ),
   },
   {
-    path: '/approvalRequest',
+    path: '/approval/request',
     element: (
-      <ProtectedRoute requiredRoles={['Employee','Manager']}>
+      <ProtectedRoute requiredRoles={['Employee','Manager','Admin']}>
         <Layout>
           <ApprovalRequest />
         </Layout>
