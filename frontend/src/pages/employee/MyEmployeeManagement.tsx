@@ -1,31 +1,29 @@
-import {
-  Avatar, Box, Button, Divider, Paper, Stack, Tab, Tabs, TextField, Typography
+import { 
+  Avatar, Box, Button, Divider, Paper, Stack, TextField, Typography, Tabs, Tab
 } from '@mui/material';
+// import Header from '../components/Layout/Header';
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import CloseIcon from '@mui/icons-material/Close';
-import Header from '../components/Header';
-import EmployeeTable from '../components/EmployeeTable';
-import { useNavigate } from 'react-router-dom';
-import { useEmployees } from '../components/EmployeeProvider';
-import { useState, useEffect } from 'react';
-import type { EmployeeDetail } from '../mock/Employees';
+import EmployeeTable from '../../components/EmployeeTable';
+import { useEmployees } from '../../components/EmployeeProvider';
+import { useEffect, useState } from 'react';
+import type { EmployeeDetail } from '../../mock/Employees';
 
-export default function TeamEmployeePage() {
+export default function MyEmployeePage() {
   const { employees, setEmployees } = useEmployees();
-  const myId = 1;                                // TODO: 실제 로그인 ID
+  const myId = 6; // TODO: 실제 로그인 사용자 ID
   const me = employees.find(e => e.id === myId) as EmployeeDetail;
-  const teamDept = me.department;
-  const teamMembers = employees.filter(e => e.department === teamDept);
-  const navigate = useNavigate(); 
+  const myDept = me.department;
+  const teamMembers = employees.filter(e => e.department === myDept);
 
   const [editMode, setEditMode] = useState(false);
   const [form, setForm] = useState<EmployeeDetail | null>(null);
   const [tabIndex, setTabIndex] = useState(0); // 0 = 팀 동료, 1 = 내 정보
-
+  
   useEffect(() => setForm(me), [me]);
 
-  const tabTitle = tabIndex === 0 ? '부서 직원' : '내 정보';
+  const tabTitle = tabIndex === 0 ? '팀 동료' : '내 정보';
 
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => setTabIndex(newValue);
 
@@ -65,22 +63,23 @@ export default function TeamEmployeePage() {
 
   return (
     <>
-      <Header />
-      <Box sx={{ maxWidth: 'lg', mx: 'auto', my: 4, mt: 10, px: 2 }}>
+      {/* <Header /> */}
+      <Box sx={{ maxWidth: 'lg', mx: 'auto', mt: 10, px: 2 }}>
         {/* ───── 상단 탭 ───── */}
         <Typography variant="h5" gutterBottom>{tabTitle}</Typography>
         <Tabs value={tabIndex} onChange={handleTabChange} sx={{ mb: 3 }}>
-          <Tab label="부서 직원" />
+          <Tab label="팀 동료" />
           <Tab label="내 정보" />
         </Tabs>
-        
-        {/* ───── 부서 직원 탭 ───── */}
+
+        {/* ───── 팀 동료 탭 ───── */}
         {tabIndex === 0 && (
           <>
             <Paper sx={{ maxWidth: 'xl', p: 3, mb: 5 }}>
               <EmployeeTable
                 rows={teamMembers}
-                onDetail={(id) => navigate(`/employees/${id}`, { state: { canEdit: false } })}
+                onDetail={() => {}}
+                showActions={false}
                 showCheckbox={false}
               />
             </Paper>
@@ -96,7 +95,7 @@ export default function TeamEmployeePage() {
                   <Button variant="contained" startIcon={<SaveIcon />} onClick={handleSave}>
                     저장
                   </Button>
-                  <Button variant="outlined" startIcon={<CloseIcon />} onClick={() => { setForm({...me}); setEditMode(false); }}>
+                  <Button variant="outlined" startIcon={<CloseIcon />} onClick={() => { setForm({ ...me }); setEditMode(false); }}>
                     취소
                   </Button>
                 </Stack>
@@ -126,11 +125,11 @@ export default function TeamEmployeePage() {
                   />
                   <Typography variant="h6">{form.name}</Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Employee ID:&nbsp;{myId}
+                    Employee&nbsp;ID:&nbsp;{myId}
                   </Typography>
                 </Box>
 
-                {/* 필드 */}
+                {/* 필드 목록 */}
                 {rowsDef.map(([label, key]) => (
                   <Box
                     key={label}

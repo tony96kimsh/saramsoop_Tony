@@ -1,13 +1,18 @@
 import {
   Avatar, Box, Button, Divider,
-  Paper, Stack, TextField, Toolbar, Typography,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Paper, Select, Stack, TextField, Toolbar, Typography,
 } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
-import { useEmployees } from '../components/EmployeeProvider';
+import { useEmployees } from '../../components/EmployeeProvider';
 import { useState } from 'react';
-import type { EmployeeDetail } from '../mock/Employees';
+import type { EmployeeDetail } from '../../mock/Employees';
+import type { Role } from '../../types/role';
+import type { SelectChangeEvent } from '@mui/material/Select';
 
 export default function EmployeeCreatePage() {
   const navigate = useNavigate();
@@ -18,7 +23,7 @@ export default function EmployeeCreatePage() {
     id: Date.now(), // 아래 방법은 삭제하고 나면 중복될 수 있으니 유니크 값으로 임시 설정
     // id: employees.length + 1, // 단순 auto-increment
     name: '',
-    role: '',
+    role: 'Employee',
     birth: '',
     regNo: '',
     phone: '',
@@ -38,6 +43,10 @@ export default function EmployeeCreatePage() {
 
   const handleChange = (key: keyof EmployeeDetail) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm(f => ({ ...f, [key]: e.target.value }));
+
+  const handleRoleChange = (e: SelectChangeEvent) => {
+    setForm(f => ({ ...f, role: e.target.value as Role }));
+  };
 
   const handleSubmit = () => {
     setEmployees(prev => [...prev, form]);
@@ -88,6 +97,33 @@ export default function EmployeeCreatePage() {
 
       <Paper sx={{ p: 3, mb: 3 }}>
         <Stack divider={<Divider flexItem />} spacing={2}>
+          {/* 👇 Role 필드는 드롭다운으로 따로 분리 */}
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              columnGap: 2,
+              alignItems: 'center',
+            }}
+          >
+            <Typography variant="body2" color="text.secondary">
+              Role
+            </Typography>
+            <FormControl size="small" fullWidth>
+              <InputLabel id="role-label">역할</InputLabel>
+              <Select
+                labelId="role-label"
+                value={form.role}
+                label="역할"
+                onChange={handleRoleChange}
+              >
+                <MenuItem value="Admin">관리자</MenuItem>
+                <MenuItem value="Manager">팀장</MenuItem>
+                <MenuItem value="Employee">사원</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+
           {rows.map(([label, key]) => (
             <Box
               key={label}

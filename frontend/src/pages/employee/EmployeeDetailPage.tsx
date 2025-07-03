@@ -7,9 +7,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import CloseIcon from '@mui/icons-material/Close';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import type { EmployeeDetail } from '../mock/Employees';
-import Header from '../components/Header';
-import { useEmployees } from '../components/EmployeeProvider';
+import type { EmployeeDetail } from '../../mock/Employees';
+import { useEmployees } from '../../components/EmployeeProvider';
 import { useEffect, useState } from 'react';
 
 export default function EmployeeDetailPage() {
@@ -69,7 +68,7 @@ export default function EmployeeDetailPage() {
 
   return (
     <>
-      <Header/>
+      {/* <Header/> */}
       <Box sx={{ maxWidth: 'md', mx: 'auto', my: 4, mt: 10, px: 2 }}>
         {/* 상단 버튼 */}
         <Stack direction="row" spacing={1} sx={{ mb: 3 }}>
