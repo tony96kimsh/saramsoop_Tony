@@ -24,7 +24,7 @@ a:hover {
 @tailwind components;
 @tailwind utilities;
 
-/* 전역 CSS 변수 */
+# 전역 CSS 변수
 :root {
   --primary-color: #3B82F6;
   --background-color: #F3F4F6;
@@ -100,6 +100,11 @@ a {
 button {
   font-family: inherit;
   cursor: pointer;
+}
+
+/* 입력 폼 초기화 (TextField 커스터마이징 외 사용 시) */
+input, textarea {
+  font-family: inherit;
 }
 
 /* 입력 폼 초기화 (TextField 커스터마이징 외 사용 시) */
