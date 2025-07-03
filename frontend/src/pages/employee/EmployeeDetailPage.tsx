@@ -60,7 +60,7 @@ export default function EmployeeDetailPage() {
     ['Department', 'department'],
     ['Position', 'position'],
     ['Years of Experience', 'career'],
-    ['Hire / Resign', 'join'],   // join/leave는 아래 별도 처리
+    ['Hire / Resign', 'join'],   // join/leave는 아래 별도 처리
     ['Bank', 'bank'],
     ['Account Number', 'account'],
     ['Account Holder', 'holder'],
