@@ -5,10 +5,12 @@ import ManagerHome from './pages/home/ManagerHome';
 import EmployeeHome from './pages/home/EmployeeHome';
 import UnauthorizedPage from './pages/auth/UnauthorizedPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+// import Header from './components/Layout/Header';
 
 function App() {
   return (
     <Router>
+      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<LoginPage />} />
 
