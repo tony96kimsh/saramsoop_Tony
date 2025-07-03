@@ -1,16 +1,20 @@
 // components/attendance/AnnualInfo.tsx
 
-import React from 'react';
 import { Typography, Box, Paper } from '@mui/material';
-import { dummyPersonalLeave } from './attendDummy';
-
+import { dummyPersonalLeave } from './AttendDummy';
 
 interface AnnualInfoProps {
   userId: number;
 }
 
 function AnnualInfo({ userId }: AnnualInfoProps) {
-  const leave = dummyPersonalLeave.find((item) => item.user_id === userId);
+  const leave = dummyPersonalLeave.find((l) => l.user_id === userId);
+
+  const infoItems = [
+    { label: '잔여 연차', value: leave?.remain_leave_days ?? '조회실패' },
+    { label: '사용 연차', value: leave?.used_leave_days ?? '조회실패' },
+    { label: '전체 연차', value: leave?.total_leave_days ?? '조회실패' },
+  ];
 
   return (
     <>
@@ -18,18 +22,8 @@ function AnnualInfo({ userId }: AnnualInfoProps) {
         연차 정보
       </Typography>
 
-      <Box
-        sx={{
-          display: 'flex',
-          gap: 2,
-          mb: 4,
-        }}
-      >
-        {[
-          { label: '잔여 연차', value: 12 },
-          { label: '사용 연차', value: 3 },
-          { label: '전체 연차', value: 15 },
-        ].map((item, idx) => (
+      <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
+        {infoItems.map((item, idx) => (
           <Paper
             key={idx}
             variant="outlined"
@@ -37,12 +31,14 @@ function AnnualInfo({ userId }: AnnualInfoProps) {
               flex: 1,
               p: 2,
               textAlign: 'center',
-              backgroundColor: '#f5f5f5', // 옅은 회색 배경
+              backgroundColor: '#f5f5f5',
               borderRadius: 2,
             }}
           >
             <Typography>{item.label}</Typography>
-            <Typography variant="h6" fontWeight="bold">{item.value}</Typography>
+            <Typography variant="h6" fontWeight="bold">
+              {item.value}
+            </Typography>
           </Paper>
         ))}
       </Box>

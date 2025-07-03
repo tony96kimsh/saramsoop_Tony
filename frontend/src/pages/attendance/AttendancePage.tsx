@@ -7,6 +7,8 @@ import AttendanceDetail from '../../components/attendance/AttendanceDetail';
 import AttendanceList from '../../components/attendance/AttendanceList';
 
 function AttendancePage() {
+
+  const nowUser = 1;
   return (
     // 전체 너비를 차지하는 래퍼
     <Box
@@ -41,8 +43,9 @@ function AttendancePage() {
         
         {/* 근태 상세 */}
         <Box sx={{ mt: 3 }}>
-          <AnnualInfo />
-          <AttendanceDetail />
+          {/* 현재 로그인된 userId를 전달 */}
+          <AnnualInfo userId={nowUser}/>
+          <AttendanceDetail userId={nowUser} />
         </Box>
 
         {/* 근태관리, 팀 근태관리 */}
