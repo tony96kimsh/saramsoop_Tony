@@ -6,11 +6,12 @@ import Header from '../../components/layout/Header';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function AdminEmployeePage() {
+
+//관리자,팀장용 결재 리스트
+export default function ApprovalAdmin() {
   const navigate = useNavigate();
   return (
     <>
-      <Header/>
       <Box sx={{ maxWidth: 'xl', mx: 'auto', my: 4, mt: 10, px: 2 }}>
         <Toolbar sx={{justifyContent: 'space-between', mb: 2 }}>
           <Typography variant="h4">결재 관리</Typography>
