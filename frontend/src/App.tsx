@@ -5,6 +5,8 @@ import ManagerHome from './pages/home/ManagerHome';
 import EmployeeHome from './pages/home/EmployeeHome';
 import UnauthorizedPage from './pages/auth/UnauthorizedPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import AttendancePage from './pages/attendance/AttendancePage';
+import AttendanceDetailPage from './pages/attendance/AttendanceDetailPage';
 
 function App() {
   return (
@@ -44,6 +46,9 @@ function App() {
 
         {/* 권한 없음 */}
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
+                
+        <Route path="/attend" element={<AttendancePage />} />
+        <Route path="/attend/:id" element={<AttendanceDetailPage />} />
       </Routes>
     </Router>
   );

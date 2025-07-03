@@ -1,4 +1,5 @@
 // pages/AttendancePage.tsx
+
 import React from 'react';
 import { Typography, Box } from '@mui/material';
 import AttendanceTabs from '../../components/attendance/AttendanceTabs';
@@ -6,30 +7,39 @@ import AnnualInfo from '../../components/attendance/AnnualInfo';
 import AttendanceDetail from '../../components/attendance/AttendanceDetail';
 import AttendanceList from '../../components/attendance/AttendanceList';
 
-function AttendancePage() {
+type UserRole = 'Employee' | 'Admin' | 'Manager' | 'Dev';
 
+function AttendancePage() {
   const nowUser = 1;
+  // const userRole: UserRole = 'Dev';
+  const userRole = 'Dev' as UserRole; // 개발/디버깅용
+
+  // 역할별 탭 구성
+  const tabs = [
+    { label: '내 근태', key: 'my', show: true },
+    { label: '근태 관리', key: 'admin', show: userRole === 'Admin' || userRole === 'Dev' },
+    { label: '팀 근태 관리', key: 'manager', show: userRole === 'Manager' || userRole === 'Dev' },
+  ].filter((tab) => tab.show);
+
+  const [tabIndex, setTabIndex] = React.useState(0);
+
+  const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
+    setTabIndex(newValue);
+  };
+
   return (
-    // 전체 너비를 차지하는 래퍼
     <Box
       sx={{
         width: '100vw',
         maxWidth: '100%',
-        minHeight: '100vh', // 필요 시 전체 높이 확보
+        minHeight: '100vh',
         display: 'flex',
         justifyContent: 'center',
         py: 4,
-        boxSizing: 'border-box', // 패딩 포함 너비 계산
+        boxSizing: 'border-box',
       }}
     >
-      {/* 실제 콘텐츠 영역 - 가운데 정렬됨 */}
-      <Box
-        sx={{
-          width: '100%',
-          maxWidth: 1200,  // 원하는 최대 콘텐츠 너비
-          px: 2,           // 좌우 패딩
-        }}
-      >
+      <Box sx={{ width: '100%', maxWidth: 1200, px: 2 }}>
         <Typography
           variant="h4"
           component="h2"
@@ -39,20 +49,28 @@ function AttendancePage() {
           근태관리
         </Typography>
 
-        <AttendanceTabs />
-        
-        {/* 근태 상세 */}
-        <Box sx={{ mt: 3 }}>
-          {/* 현재 로그인된 userId를 전달 */}
-          <AnnualInfo userId={nowUser}/>
-          <AttendanceDetail userId={nowUser} />
-        </Box>
+        <AttendanceTabs
+          tabIndex={tabIndex}
+          onChange={handleTabChange}
+          tabs={tabs.map((tab) => tab.label)}
+        />
 
-        {/* 근태관리, 팀 근태관리 */}
         <Box sx={{ mt: 3 }}>
-          <AttendanceList />
-        </Box>
+          {tabs[tabIndex]?.key === 'my' && (
+            <>
+              <AnnualInfo userId={nowUser} />
+              <AttendanceDetail userId={nowUser} />
+            </>
+          )}
 
+          {tabs[tabIndex]?.key === 'admin' && (
+            <AttendanceList userId={nowUser} type="admin" />
+          )}
+
+          {tabs[tabIndex]?.key === 'manager' && (
+            <AttendanceList userId={nowUser} type="manager" />
+          )}
+        </Box>
       </Box>
     </Box>
   );

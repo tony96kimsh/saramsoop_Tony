@@ -1,33 +1,32 @@
-// component/attendance/AttendanceTabs.tsx
+// components/attendance/AttendanceTabs.tsx
 
 import React from 'react';
 import { Tabs, Tab, Box } from '@mui/material';
 
-function AttendanceTabs() {
-  const [tabIndex, setTabIndex] = React.useState(0);
+interface AttendanceTabsProps {
+  tabIndex: number;
+  onChange: (event: React.SyntheticEvent, newValue: number) => void;
+  tabs: string[];
+}
 
-  const handleChange = (_: React.SyntheticEvent, newValue: number) => {
-    setTabIndex(newValue);
-  };
-
+function AttendanceTabs({ tabIndex, onChange, tabs }: AttendanceTabsProps) {
   return (
     <Box sx={{ width: '100%' }}>
       <Tabs
         value={tabIndex}
-        onChange={handleChange}
+        onChange={onChange}
         variant="standard"
         sx={{
-          mb: 4, // 탭 아래 마진 크게
+          mb: 4,
           '.MuiTabs-flexContainer': {
             justifyContent: 'flex-start',
           },
         }}
       >
-        <Tab label="내 근태" />
-        <Tab label="근태 관리" />
-        <Tab label="팀 근태 관리" />
+        {tabs.map((label, index) => (
+          <Tab key={index} label={label} />
+        ))}
       </Tabs>
-
     </Box>
   );
 }
