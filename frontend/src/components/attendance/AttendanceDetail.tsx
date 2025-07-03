@@ -135,7 +135,7 @@ function AttendanceDetail({ userId }: AttendanceDetailProps) {
 
 export default AttendanceDetail;
 
-// ⏱️ 총 근무 시간 계산 함수
+// 총 근무 시간 계산 함수
 function calcWorkHours(start: string, end: string): string {
   const startTime = new Date(start);
   const endTime = new Date(end);
