@@ -5,7 +5,7 @@ import {
   GridLogicOperator,
 } from '@mui/x-data-grid';
 import { Chip, Button, Stack, Typography } from '@mui/material';
-import type { Employee, Status } from '../mock/Employees';
+import type { Employee, Status } from '../../mock/Employees';
 
 interface TableProps {
   rows: Employee[];

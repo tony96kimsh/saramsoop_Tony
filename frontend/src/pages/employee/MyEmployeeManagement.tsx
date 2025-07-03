@@ -5,8 +5,8 @@ import {
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import CloseIcon from '@mui/icons-material/Close';
-import EmployeeTable from '../../components/EmployeeTable';
-import { useEmployees } from '../../components/EmployeeProvider';
+import EmployeeTable from '../../components/employee/EmployeeTable';
+import { useEmployees } from '../../components/employee/EmployeeProvider';
 import { useEffect, useState } from 'react';
 import type { EmployeeDetail } from '../../mock/Employees';
 

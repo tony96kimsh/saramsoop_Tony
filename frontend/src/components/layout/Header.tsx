@@ -40,10 +40,10 @@ const Header = () => {
 
           {/* 메뉴 항목들 */}
           <Box display="flex" alignItems="center" gap={3} sx={{ ml: 4, mt: '5px' }}>
-            <Link to="/employees" style={{ textDecoration: 'none' }}>
+            <Link to="/employeepage" style={{ textDecoration: 'none' }}>
               <Typography variant="body2" color="#fff">직원관리</Typography>
             </Link>
-            <Link to="/attendance" style={{ textDecoration: 'none' }}>
+            <Link to="/attend" style={{ textDecoration: 'none' }}>
               <Typography variant="body2" color="#fff">근태관리</Typography>
             </Link>
             <Link to="/approvals" style={{ textDecoration: 'none' }}>

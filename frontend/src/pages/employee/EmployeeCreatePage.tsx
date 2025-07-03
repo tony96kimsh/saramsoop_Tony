@@ -8,7 +8,7 @@ import {
 import SaveIcon from '@mui/icons-material/Save';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
-import { useEmployees } from '../../components/EmployeeProvider';
+import { useEmployees } from '../../components/employee/EmployeeProvider';
 import { useState } from 'react';
 import type { EmployeeDetail } from '../../mock/Employees';
 import type { Role } from '../../types/role';
@@ -50,7 +50,7 @@ export default function EmployeeCreatePage() {
 
   const handleSubmit = () => {
     setEmployees(prev => [...prev, form]);
-    navigate('/adminEmployee'); // 리스트 페이지로 이동
+    navigate('/employeepage'); // 리스트 페이지로 이동
   };
 
   const rows: Array<[string, keyof EmployeeDetail]> = [
