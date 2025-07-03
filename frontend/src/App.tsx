@@ -1,28 +1,51 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import AdminEmployeePage from './pages/employee/AdminEmployeeManagement';
-// import TeamEmployeePage from './pages/employee/TeamEmployeeManagement';
-// import MyEmployeePage from './pages/employee/MyEmployeeManagement';
-import EmployeeDetailPage from './pages/employee/EmployeeDetailPage';
-import EmployeeCreatePage from './pages/employee/EmployeeCreatePage';
-import Header from './components/Layout/Header'
-import LoginPage from './pages/LoginPage'
-import './App.css'
-import EmployeePageRouter from './routes/EmployeeRoutes';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginPage from './pages/auth/LoginPage';
+import AdminHome from './pages/home/AdminHome';
+import ManagerHome from './pages/home/ManagerHome';
+import EmployeeHome from './pages/home/EmployeeHome';
+import UnauthorizedPage from './pages/auth/UnauthorizedPage';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
+    <Router>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        {/* <Route path="/adminEmployee" element={<AdminEmployeePage />} />
-        <Route path="/teamEmployee" element={<TeamEmployeePage />} />
-        <Route path="/myEmployee" element={<MyEmployeePage />} /> */}
-        <Route path="/employee" element={<EmployeePageRouter />} />
-        <Route path="/employees/:id" element={<EmployeeDetailPage />} />
-        <Route path="/employees/create" element={<EmployeeCreatePage />} />
+        <Route path="/" element={<LoginPage />} />
+
+        {/* 관리자 전용 */}
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute requiredRoles={['Admin']}>
+              <AdminHome />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* 팀장 전용 */}
+        <Route
+          path="/manager"
+          element={
+            <ProtectedRoute requiredRoles={['Manager']}>
+              <ManagerHome />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* 직원 전용 */}
+        <Route
+          path="/employee"
+          element={
+            <ProtectedRoute requiredRoles={['Employee']}>
+              <EmployeeHome />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* 권한 없음 */}
+        <Route path="/unauthorized" element={<UnauthorizedPage />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
