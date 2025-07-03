@@ -1,12 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import AdminEmployeePage from './pages/employee/AdminEmployeeManagement';
-import TeamEmployeePage from './pages/employee/TeamEmployeeManagement';
-import MyEmployeePage from './pages/employee/MyEmployeeManagement';
+// import AdminEmployeePage from './pages/employee/AdminEmployeeManagement';
+// import TeamEmployeePage from './pages/employee/TeamEmployeeManagement';
+// import MyEmployeePage from './pages/employee/MyEmployeeManagement';
 import EmployeeDetailPage from './pages/employee/EmployeeDetailPage';
 import EmployeeCreatePage from './pages/employee/EmployeeCreatePage';
 import Header from './components/Layout/Header'
 import LoginPage from './pages/LoginPage'
 import './App.css'
+import EmployeePageRouter from './routes/EmployeeRoutes';
 
 function App() {
   return (
@@ -14,9 +15,10 @@ function App() {
       <Header />
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/adminEmployee" element={<AdminEmployeePage />} />
+        {/* <Route path="/adminEmployee" element={<AdminEmployeePage />} />
         <Route path="/teamEmployee" element={<TeamEmployeePage />} />
-        <Route path="/myEmployee" element={<MyEmployeePage />} />
+        <Route path="/myEmployee" element={<MyEmployeePage />} /> */}
+        <Route path="/employee" element={<EmployeePageRouter />} />
         <Route path="/employees/:id" element={<EmployeeDetailPage />} />
         <Route path="/employees/create" element={<EmployeeCreatePage />} />
       </Routes>
