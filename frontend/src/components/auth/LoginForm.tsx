@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
-import logo from '../../assets/logo.png';
+import logo from '/logo.png';
 
 interface LoginFormProps {
   onSubmit: (employeeNo: string, password: string) => void;
