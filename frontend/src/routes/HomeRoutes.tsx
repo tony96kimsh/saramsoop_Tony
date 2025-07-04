@@ -7,7 +7,7 @@ import Layout from '../components/layout/Layout';
 
 const HomeRoutes: RouteObject[] = [
   {
-    path: '/admin',
+    path: '/adminHome',
     element: (
       <ProtectedRoute requiredRoles={['Admin']}>
         <Layout>
@@ -17,7 +17,7 @@ const HomeRoutes: RouteObject[] = [
     ),
   },
   {
-    path: '/manager',
+    path: '/managerHome',
     element: (
       <ProtectedRoute requiredRoles={['Manager']}>
         <Layout>
@@ -27,7 +27,7 @@ const HomeRoutes: RouteObject[] = [
     ),
   },
   {
-    path: '/employee',
+    path: '/employeeHome',
     element: (
       <ProtectedRoute requiredRoles={['Employee']}>
         <Layout>
