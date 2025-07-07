@@ -54,7 +54,7 @@ const AttendanceDetailPage = () => {
         </Typography>               
 
         {/* 유저 간략한 주요 정보 */}
-        <UserSummary />
+        <UserSummary userId={userId} />
 
         {/* 직원 근태 상세 */}
         <Box sx={{ mt: 3 }}>
