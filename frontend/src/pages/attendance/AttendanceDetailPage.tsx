@@ -3,8 +3,9 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import AnnualInfo from "../../components/attendance/AnnualInfo";
 import AttendanceDetail from "../../components/attendance/AttendanceDetail";
 import { useParams, useNavigate } from "react-router-dom";
-import { dummyUsers } from './AttendDummy';
+import { dummyUsers } from '../../components/attendance/AttendDummy';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import UserSummary from "../../components/attendance/UserSummary";
 
 
 const AttendanceDetailPage = () => {
@@ -49,8 +50,11 @@ const AttendanceDetailPage = () => {
           fontWeight="bold"
           sx={{ mb: 4 }}
         > 
-          {userName} 근태 상세
+          <strong>{userName}</strong>님 근태 상세
         </Typography>               
+
+        {/* 유저 간략한 주요 정보 */}
+        <UserSummary />
 
         {/* 직원 근태 상세 */}
         <Box sx={{ mt: 3 }}>
