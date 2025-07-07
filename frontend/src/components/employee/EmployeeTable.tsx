@@ -7,11 +7,12 @@ import {
 import { Chip, Button, Stack, Typography } from '@mui/material';
 import type { Employee, Status } from '../../mock/Employees';
 
-interface TableProps {
+interface EmployeeTableProps {
   rows: Employee[];
   onDetail: (id: number) => void;
   showActions?: boolean;
   showCheckbox?: boolean;
+  onSelectionChange?: (selectedIds: number[]) => void; // 체크박스 선택된 ID들을 부모 컴포넌트인 EmployeeTabs로 전달
 }
 
 function makeColumns(goDetail: (id: number) => void, showActions = true): GridColDef<Employee>[] {
@@ -54,37 +55,46 @@ function makeColumns(goDetail: (id: number) => void, showActions = true): GridCo
   return base;
 }
 
-export default function EmployeeTable({ rows, onDetail, showActions = true, showCheckbox = true, }: TableProps) {
+export default function EmployeeTable({ rows, onDetail, showActions = true, showCheckbox = true, onSelectionChange, }: EmployeeTableProps) {
   const columns = makeColumns(onDetail, showActions);
 
   return (
     <>
       <DataGrid
-          rows={rows}
-          columns={columns}
-          checkboxSelection={showCheckbox}     // 직원, 팀장 화면은 체크박스 숨김
-          disableRowSelectionOnClick
-          pageSizeOptions={[10, 25, 50]}
-          initialState={{
-            pagination: { paginationModel: { page: 0, pageSize: 25 } },
-            filter: { filterModel: { items: [], quickFilterLogicOperator: GridLogicOperator.Or } },
-          }}
-          showToolbar
-          slotProps={{
-            toolbar: {
-              showQuickFilter: true,
-              csvOptions: { utf8WithBom: true, fileName: 'employees_list' },
-              quickFilterProps: {
-                quickFilterParser: (i: string) =>
-                i.split(',').map(v => v.trim()).filter(Boolean),
-              },
+        rows={rows}
+        columns={columns}
+        checkboxSelection={showCheckbox}     // 직원, 팀장 화면은 체크박스 숨김
+        disableRowSelectionOnClick
+        onRowSelectionModelChange={(newSelectionModel) => {
+          // newSelectionModel은 GridRowSelectionModel 타입이지만, 보통 배열이라 가정
+          const selectedIds = Array.isArray(newSelectionModel)
+            ? newSelectionModel.map(id => Number(id))
+            : [];
+
+          console.log('선택된 IDs:', selectedIds);
+          if (onSelectionChange) onSelectionChange(selectedIds);
+        }}
+        pageSizeOptions={[10, 25, 50]}
+        initialState={{
+          pagination: { paginationModel: { page: 0, pageSize: 25 } },
+          filter: { filterModel: { items: [], quickFilterLogicOperator: GridLogicOperator.Or } },
+        }}
+        showToolbar
+        slotProps={{
+          toolbar: {
+            showQuickFilter: true,
+            csvOptions: { utf8WithBom: true, fileName: 'employees_list' },
+            quickFilterProps: {
+              quickFilterParser: (i: string) =>
+              i.split(',').map(v => v.trim()).filter(Boolean),
             },
-          }}
-          sx={{
-            border: 0,
-            '.MuiDataGrid-columnHeaders': { backgroundColor: '#f9fafb' },
-            '.MuiDataGrid-row:hover': { backgroundColor: '#f3f4f6' },
-          }}
+          },
+        }}
+        sx={{
+          border: 0,
+          '.MuiDataGrid-columnHeaders': { backgroundColor: '#f9fafb' },
+          '.MuiDataGrid-row:hover': { backgroundColor: '#f3f4f6' },
+        }}
       />
       <Stack
         direction="row"

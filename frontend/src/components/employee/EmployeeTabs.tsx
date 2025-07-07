@@ -39,6 +39,9 @@ export default function EmployeeTabs({
   const [editMode, setEditMode] = useState(false);
   const [form, setForm] = useState<EmployeeDetail | null>(null);
   const [tabIndex, setTabIndex] = useState(0); 
+  // 체크박스 선택된 인원 선택 삭제
+  const [selectedEmployeeIds, setSelectedEmployeeIds] = useState<number[]>([]);
+
   const tabTitle =
     tabIndex === 0
       ? role === 'Admin'
@@ -104,6 +107,12 @@ export default function EmployeeTabs({
                     variant="outlined"
                     color="error"
                     startIcon={<DeleteIcon />}
+                    onClick={() => {
+                      console.log('삭제할 IDs:', selectedEmployeeIds);
+                      if (selectedEmployeeIds.length === 0) return;
+                      setEmployees(prev => prev.filter(e => !selectedEmployeeIds.includes(e.id)));
+                      setSelectedEmployeeIds([]); // 선택 해제
+                    }}
                     sx={{ backgroundColor: '#fff' }}
                   >선택 삭제</Button>
                 )}
@@ -117,6 +126,7 @@ export default function EmployeeTabs({
               onDetail={(id) => navigate(`/employee/${id}`, { state: { canEdit: role === 'Admin' } })}
               showCheckbox={showCheckbox}
               showActions={showActions}
+              onSelectionChange={setSelectedEmployeeIds}
             />
           </Paper>
         </>
