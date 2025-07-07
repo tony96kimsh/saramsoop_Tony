@@ -31,7 +31,7 @@ function AnnualInfo({ userId }: AnnualInfoProps) {
               flex: 1,
               p: 2,
               textAlign: 'center',
-              backgroundColor: '#f5f5f5',
+              backgroundColor: '#fcfcfc',
               borderRadius: 2,
             }}
           >
