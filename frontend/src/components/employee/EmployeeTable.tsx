@@ -59,43 +59,43 @@ export default function EmployeeTable({ rows, onDetail, showActions = true, show
 
   return (
     <>
-        <DataGrid
-            rows={rows}
-            columns={columns}
-            checkboxSelection={showCheckbox}     // 직원, 팀장 화면은 체크박스 숨김
-            disableRowSelectionOnClick
-            pageSizeOptions={[10, 25, 50]}
-            initialState={{
-                pagination: { paginationModel: { page: 0, pageSize: 25 } },
-                filter: { filterModel: { items: [], quickFilterLogicOperator: GridLogicOperator.Or } },
-            }}
-            showToolbar
-            slotProps={{
-                toolbar: {
-                showQuickFilter: true,
-                csvOptions: { utf8WithBom: true, fileName: 'employees' },
-                quickFilterProps: {
-                    quickFilterParser: (i: string) =>
-                    i.split(',').map(v => v.trim()).filter(Boolean),
-                },
-                },
-            }}
-            sx={{
-                border: 0,
-                '.MuiDataGrid-columnHeaders': { backgroundColor: '#f9fafb' },
-                '.MuiDataGrid-row:hover': { backgroundColor: '#f3f4f6' },
-            }}
-        />
-        <Stack
-            direction="row"
-            justifyContent="space-between"
-            alignItems="center"
-            sx={{ mt: 1, px: 0.5 }}
-        >
-            <Typography variant="body2" color="text.secondary">
-                총 {rows.length}명 
-            </Typography>
-        </Stack>
+      <DataGrid
+          rows={rows}
+          columns={columns}
+          checkboxSelection={showCheckbox}     // 직원, 팀장 화면은 체크박스 숨김
+          disableRowSelectionOnClick
+          pageSizeOptions={[10, 25, 50]}
+          initialState={{
+            pagination: { paginationModel: { page: 0, pageSize: 25 } },
+            filter: { filterModel: { items: [], quickFilterLogicOperator: GridLogicOperator.Or } },
+          }}
+          showToolbar
+          slotProps={{
+            toolbar: {
+              showQuickFilter: true,
+              csvOptions: { utf8WithBom: true, fileName: 'employees_list' },
+              quickFilterProps: {
+                quickFilterParser: (i: string) =>
+                i.split(',').map(v => v.trim()).filter(Boolean),
+              },
+            },
+          }}
+          sx={{
+            border: 0,
+            '.MuiDataGrid-columnHeaders': { backgroundColor: '#f9fafb' },
+            '.MuiDataGrid-row:hover': { backgroundColor: '#f3f4f6' },
+          }}
+      />
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        sx={{ mt: 1, px: 0.5 }}
+      >
+        <Typography variant="body2" color="text.secondary">
+            총 {rows.length}명 
+        </Typography>
+      </Stack>
     </>
   );
 }
