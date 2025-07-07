@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import logo from '/logo.png';
+import { Link } from 'react-router-dom';
 
 interface LoginFormProps {
   onSubmit: (employeeNo: string, password: string) => void;
@@ -72,9 +73,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
 
       {/* 하단 안내 */}
       <Box mt={2}>
-        <Typography sx={{ color: '#447A5C', fontSize: '0.9rem' }}>
-          비밀번호 재설정
-        </Typography>
+        <Link to="/reset-password" style={{ textDecoration: 'none' }}>
+          <Typography variant="body2" sx={{ color: '#447A5C' }}>
+            비밀번호 재설정
+          </Typography>
+        </Link>
       </Box>
     </form>
   );
