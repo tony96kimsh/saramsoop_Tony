@@ -1,5 +1,6 @@
 // src/mock/employees.ts
-export type Status = 'Active' | 'Inactive';
+//결재상태값
+export type Status = 'APPROVE' | 'REJECT' | 'PENDING';
 
 /** 리스트에서 쓰이는 기본 정보 */
 export interface IUser {
@@ -37,7 +38,7 @@ export const mockUsers: IUser[] = [
     position: '대리',
     email: 'kim.cs@company.com',
     department: '개발팀',
-    status: 'Active',
+    status: 'PENDING',
     role: 'Developer'
   },
   {
@@ -46,7 +47,7 @@ export const mockUsers: IUser[] = [
     position: '과장',
     email: 'lee.yh@company.com',
     department: '마케팅팀',
-    status: 'Active',
+    status: 'PENDING',
     role: 'Manager'
   },
   {
@@ -55,7 +56,7 @@ export const mockUsers: IUser[] = [
     position: '차장',
     email: 'park.ms@company.com',
     department: '인사팀',
-    status: 'Active',
+    status: 'PENDING',
     role: 'HR Manager'
   },
   {
@@ -64,7 +65,7 @@ export const mockUsers: IUser[] = [
     position: '사원',
     email: 'jung.sj@company.com',
     department: '개발팀',
-    status: 'Active',
+    status: 'APPROVE',
     role: 'Junior Developer'
   },
   {
@@ -73,7 +74,7 @@ export const mockUsers: IUser[] = [
     position: '부장',
     email: 'choi.dw@company.com',
     department: '영업팀',
-    status: 'Active',
+    status: 'APPROVE',
     role: 'Sales Director'
   },
   {
@@ -82,7 +83,7 @@ export const mockUsers: IUser[] = [
     position: '대리',
     email: 'han.my@company.com',
     department: '디자인팀',
-    status: 'Active',
+    status: 'APPROVE',
     role: 'Designer'
   },
   {
@@ -91,7 +92,7 @@ export const mockUsers: IUser[] = [
     position: '과장',
     email: 'song.jh@company.com',
     department: '개발팀',
-    status: 'Inactive',
+    status: 'REJECT',
     role: 'Tech Lead'
   },
   {
@@ -100,7 +101,7 @@ export const mockUsers: IUser[] = [
     position: '사원',
     email: 'lim.jh@company.com',
     department: '회계팀',
-    status: 'Active',
+    status: 'REJECT',
     role: 'Accountant'
   },
   {
@@ -109,7 +110,7 @@ export const mockUsers: IUser[] = [
     position: '대리',
     email: 'kang.hn@company.com',
     department: '기획팀',
-    status: 'Active',
+    status: 'REJECT',
     role: 'Planner'
   },
   {
@@ -118,7 +119,7 @@ export const mockUsers: IUser[] = [
     position: '사원',
     email: 'yoon.sj@company.com',
     department: '마케팅팀',
-    status: 'Active',
+    status: 'APPROVE',
     role: 'Marketing Assistant'
   },
   {
@@ -127,7 +128,7 @@ export const mockUsers: IUser[] = [
     position: '차장',
     email: 'oh.tm@company.com',
     department: '영업팀',
-    status: 'Active',
+    status: 'APPROVE',
     role: 'Sales Manager'
   },
   {
@@ -136,7 +137,7 @@ export const mockUsers: IUser[] = [
     position: '과장',
     email: 'bae.sh@company.com',
     department: '인사팀',
-    status: 'Active',
+    status: 'APPROVE',
     role: 'HR Specialist'
   },
   {
@@ -145,7 +146,7 @@ export const mockUsers: IUser[] = [
     position: '사원',
     email: 'namgung.m@company.com',
     department: '개발팀',
-    status: 'Active',
+    status: 'APPROVE',
     role: 'Frontend Developer'
   },
   {
@@ -154,12 +155,13 @@ export const mockUsers: IUser[] = [
     position: '대리',
     email: 'seo.yn@company.com',
     department: '디자인팀',
-    status: 'Active',
+    status: 'PENDING',
     role: 'UI/UX Designer'
   }
 ];
 
 // mock/Approvals.ts
+//결재관련 MOCK데이터
 export const mockApprovals: IApproval[] = [
   {
     id: 1,
@@ -167,7 +169,7 @@ export const mockApprovals: IApproval[] = [
     position: '대리',
     email: 'kim.cs@company.com',
     department: '개발팀',
-    status: 'Active',
+    status: 'PENDING',
     role: 'Developer',
     requester_id: 1,
     approver_id: 3,
@@ -187,7 +189,7 @@ export const mockApprovals: IApproval[] = [
     position: '과장',
     email: 'lee.yh@company.com',
     department: '마케팅팀',
-    status: 'Active',
+    status: 'PENDING',
     role: 'Manager',
     requester_id: 2,
     approver_id: 5,
@@ -207,7 +209,7 @@ export const mockApprovals: IApproval[] = [
     position: '사원',
     email: 'jung.sj@company.com',
     department: '개발팀',
-    status: 'Active',
+    status: 'PENDING',
     role: 'Junior Developer',
     requester_id: 4,
     approver_id: 7,
@@ -227,7 +229,7 @@ export const mockApprovals: IApproval[] = [
     position: '대리',
     email: 'han.my@company.com',
     department: '디자인팀',
-    status: 'Active',
+    status: 'PENDING',
     role: 'Designer',
     requester_id: 6,
     approver_id: 3,
@@ -247,7 +249,7 @@ export const mockApprovals: IApproval[] = [
     position: '사원',
     email: 'lim.jh@company.com',
     department: '회계팀',
-    status: 'Active',
+    status: 'PENDING',
     role: 'Accountant',
     requester_id: 8,
     approver_id: 12,
@@ -267,7 +269,7 @@ export const mockApprovals: IApproval[] = [
     position: '대리',
     email: 'kang.hn@company.com',
     department: '기획팀',
-    status: 'Active',
+    status: 'APPROVE',
     role: 'Planner',
     requester_id: 9,
     approver_id: 3,
@@ -287,7 +289,7 @@ export const mockApprovals: IApproval[] = [
     position: '사원',
     email: 'yoon.sj@company.com',
     department: '마케팅팀',
-    status: 'Active',
+    status: 'APPROVE',
     role: 'Marketing Assistant',
     requester_id: 10,
     approver_id: 2,
@@ -307,7 +309,7 @@ export const mockApprovals: IApproval[] = [
     position: '차장',
     email: 'oh.tm@company.com',
     department: '영업팀',
-    status: 'Active',
+    status: 'APPROVE',
     role: 'Sales Manager',
     requester_id: 11,
     approver_id: 5,
@@ -327,7 +329,7 @@ export const mockApprovals: IApproval[] = [
     position: '사원',
     email: 'namgung.m@company.com',
     department: '개발팀',
-    status: 'Active',
+    status: 'APPROVE',
     role: 'Frontend Developer',
     requester_id: 13,
     approver_id: 7,
@@ -347,7 +349,7 @@ export const mockApprovals: IApproval[] = [
     position: '대리',
     email: 'seo.yn@company.com',
     department: '디자인팀',
-    status: 'Inactive',
+    status: 'APPROVE',
     role: 'UI/UX Designer',
     requester_id: 14,
     approver_id: 3,
@@ -367,7 +369,7 @@ export const mockApprovals: IApproval[] = [
     position: '대리',
     email: 'kim.cs@company.com',
     department: '개발팀',
-    status: 'Active',
+    status: 'APPROVE',
     role: 'Developer',
     requester_id: 1,
     approver_id: 7,
@@ -387,7 +389,7 @@ export const mockApprovals: IApproval[] = [
     position: '과장',
     email: 'bae.sh@company.com',
     department: '인사팀',
-    status: 'Active',
+    status: 'REJECT',
     role: 'HR Specialist',
     requester_id: 12,
     approver_id: 3,
@@ -407,7 +409,7 @@ export const mockApprovals: IApproval[] = [
     position: '과장',
     email: 'lee.yh@company.com',
     department: '마케팅팀',
-    status: 'Active',
+    status: 'REJECT',
     role: 'Manager',
     requester_id: 2,
     approver_id: 5,
@@ -427,7 +429,7 @@ export const mockApprovals: IApproval[] = [
     position: '사원',
     email: 'jung.sj@company.com',
     department: '개발팀',
-    status: 'Active',
+    status: 'REJECT',
     role: 'Junior Developer',
     requester_id: 4,
     approver_id: 1,

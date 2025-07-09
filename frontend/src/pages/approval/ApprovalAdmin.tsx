@@ -1,4 +1,4 @@
-import { mockUsers } from '../../mock/IApproval';
+import { mockUsers ,mockApprovals } from '../../mock/IApproval';
 import ApprovalTable from '../../components/ApprovalTable';
 import { Box, Button, Paper, Stack, Toolbar, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 
 //관리자,팀장용 결재 리스트
+//결재 : 사원,팀장은 admin, admin은 다른 admin에게 결재 가능
 export default function ApprovalAdmin() {
   const navigate = useNavigate();
   return (
@@ -24,6 +25,7 @@ export default function ApprovalAdmin() {
               sx={{backgroundColor: '#fff', '&:hover': {backgroundColor: '#1976D2', color: '#fff', borderColor: '#2E6C4D'}}}
             >
               결재 생성
+              {/* 관리자는 결재 생성이 필요할까? */}
             </Button>
             <Button variant = "outlined" color = "error" startIcon={<DeleteIcon />} sx={{backgroundColor: '#fff'}}
             >
@@ -33,7 +35,7 @@ export default function ApprovalAdmin() {
         </Toolbar>
         <Paper sx={{ p: 3 }}>
           <ApprovalTable 
-              rows={mockUsers} 
+              rows={mockApprovals} 
               onDetail={(id) => navigate(`/approval/${id}`, { state: { canEdit: true } })}
               dataType="user"
               showActions={true}
