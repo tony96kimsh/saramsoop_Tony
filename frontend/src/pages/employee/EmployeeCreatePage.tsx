@@ -8,13 +8,14 @@ import { useNavigate } from 'react-router-dom';
 import { useEmployees } from '../../components/employee/EmployeeProvider';
 import type { EmployeeDetail } from '../../mock/Employees';
 import EmployeeForm from '../../components/employee/EmployeeForm';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function EmployeeCreatePage() {
   const navigate = useNavigate();
   const { setEmployees } = useEmployees();
 
   const [employeeFormData, setEmployeeFormData] = useState<EmployeeDetail>({
-    id: Date.now(),
+    id: Number(uuidv4()), // 무작위 숫자 생성하는 범용 고유 식별자의 한 종류
     name: '',
     role: 'Employee',
     birth: '',

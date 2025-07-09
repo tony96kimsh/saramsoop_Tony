@@ -5,19 +5,22 @@ import {
   GridLogicOperator,
 } from '@mui/x-data-grid';
 import { Chip, Button, Stack, Typography } from '@mui/material';
-import type { Employee, Status } from '../../mock/Employees';
+import type { EmployeeDetail, Status } from '../../mock/Employees';
 
 interface EmployeeTableProps {
-  rows: Employee[];
+  rows: EmployeeDetail[];
   onDetail: (id: number) => void;
   showActions?: boolean;
   showCheckbox?: boolean;
-  onSelectionChange?: (selectedIds: number[]) => void; // 체크박스 선택된 ID들을 부모 컴포넌트인 EmployeeTabs로 전달
+  onSelectionChange?: (selectedIds: number[]) => void;
 }
 
-function makeColumns(goDetail: (id: number) => void, showActions = true): GridColDef<Employee>[] {
-  const base: GridColDef<Employee>[] = [
-    { field: 'id', headerName: '사원번호', flex: 0.3, minWidth: 70},
+function makeColumns(
+  goDetail: (id: number) => void,
+  showActions = true
+): GridColDef<EmployeeDetail>[] {
+  const base: GridColDef<EmployeeDetail>[] = [
+    { field: 'id', headerName: '사원번호', flex: 0.3, minWidth: 70 },
     { field: 'name', headerName: '이름', flex: 0.6, minWidth: 120 },
     { field: 'position', headerName: '직급', flex: 0.5, minWidth: 90 },
     { field: 'email', headerName: '이메일', flex: 1.2, minWidth: 180 },
@@ -26,7 +29,7 @@ function makeColumns(goDetail: (id: number) => void, showActions = true): GridCo
       field: 'status',
       headerName: '상태',
       width: 150,
-      renderCell: ({ value }: GridRenderCellParams<Employee, Status>) => (
+      renderCell: ({ value }: GridRenderCellParams<EmployeeDetail, Status>) => (
         <Chip
           label={value === 'Active' ? '재직' : '휴직'}
           color={value === 'Active' ? 'success' : 'default'}
@@ -55,24 +58,44 @@ function makeColumns(goDetail: (id: number) => void, showActions = true): GridCo
   return base;
 }
 
-export default function EmployeeTable({ rows, onDetail, showActions = true, showCheckbox = true, onSelectionChange, }: EmployeeTableProps) {
+export default function EmployeeTable({
+  rows,
+  onDetail,
+  showActions = true,
+  showCheckbox = true,
+  onSelectionChange,
+}: EmployeeTableProps) {
   const columns = makeColumns(onDetail, showActions);
+
+  // ✅ 여기에 디버깅 로그 추가
+  console.log('✅ [EmployeeTable] rows 전달됨:', rows);
+  console.log('✅ [EmployeeTable] rows id 타입:', rows.map(r => [typeof r.id, r.id]));
 
   return (
     <>
       <DataGrid
         rows={rows}
         columns={columns}
-        checkboxSelection={showCheckbox}     // 직원, 팀장 화면은 체크박스 숨김
+        getRowId={(row) => String(row.id)}  // 강제 string 처리로 일관성 확보
+        checkboxSelection={showCheckbox}
         disableRowSelectionOnClick
         onRowSelectionModelChange={(newSelectionModel) => {
-          // newSelectionModel은 GridRowSelectionModel 타입이지만, 보통 배열이라 가정
-          const selectedIds = Array.isArray(newSelectionModel)
-            ? newSelectionModel.map(id => Number(id))
-            : [];
+          let selectedIds: number[] = [];
 
-          console.log('선택된 IDs:', selectedIds);
-          if (onSelectionChange) onSelectionChange(selectedIds);
+          if (Array.isArray(newSelectionModel)) {
+            selectedIds = newSelectionModel.map(id => Number(id));
+          } else if (
+            typeof newSelectionModel === 'object' &&
+            newSelectionModel?.ids instanceof Set
+          ) {
+            selectedIds = Array.from(newSelectionModel.ids).map(id => Number(id));
+          }
+
+          console.log('🟢 최종 selectedIds:', selectedIds);
+
+          if (onSelectionChange) {
+            onSelectionChange(selectedIds);
+          }
         }}
         pageSizeOptions={[10, 25, 50]}
         initialState={{
@@ -85,8 +108,8 @@ export default function EmployeeTable({ rows, onDetail, showActions = true, show
             showQuickFilter: true,
             csvOptions: { utf8WithBom: true, fileName: 'employees_list' },
             quickFilterProps: {
-              quickFilterParser: (i: string) =>
-              i.split(',').map(v => v.trim()).filter(Boolean),
+              quickFilterParser: (input: string) =>
+                input.split(',').map(v => v.trim()).filter(Boolean),
             },
           },
         }}
@@ -103,10 +126,9 @@ export default function EmployeeTable({ rows, onDetail, showActions = true, show
         sx={{ mt: 1, px: 0.5 }}
       >
         <Typography variant="body2" color="text.secondary">
-            총 {rows.length}명 
+          총 {rows.length}명
         </Typography>
       </Stack>
     </>
   );
 }
- 
