@@ -35,13 +35,13 @@ export const useLogin = () => {
         // 역할에 따라 페이지 이동
         switch (decoded.role) {
           case 'Admin':
-            navigate('/admin');
+            navigate('/adminHome');
             break;
           case 'Manager':
-            navigate('/manager');
+            navigate('/managerHome');
             break;
           case 'Employee':
-            navigate('/employee');
+            navigate('/employeeHome');
             break;
           default:
             navigate('/unauthorized');
