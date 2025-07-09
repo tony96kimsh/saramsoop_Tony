@@ -1,6 +1,6 @@
 ﻿namespace backend.Dtos
 {
-    public class Class
+    public class ApprovalDto
     {
     }
 }
