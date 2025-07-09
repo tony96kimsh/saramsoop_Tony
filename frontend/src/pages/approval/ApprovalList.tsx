@@ -1,4 +1,4 @@
-import { employees } from '../../mock/Employees';
+import { mockUsers ,mockApprovals } from '../../mock/IApproval';
 import ApprovalTable from '../../components/ApprovalTable';
 import { Box, Button, Paper, Stack, Toolbar, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -31,7 +31,7 @@ export default function ApprovalList() {
         </Toolbar>
         <Paper sx={{ p: 3 }}>
           <ApprovalTable 
-              rows={employees} 
+              rows={mockApprovals} 
               onDetail={(id) => navigate(`/approval/${id}`, { state: { canEdit: true } })}
               dataType="user"
               showActions={true}

@@ -19,15 +19,15 @@ const getChipProps = (value: string, dataType: 'user' | 'approval') => {
   if (dataType === 'user') {
     // IUser의 status용 chipMap
     const userChipMap = {
-      'Active': { label: '활성', color: 'success' as const },
-      'Inactive': { label: '비활성', color: 'error' as const },
-      'Default': { label: '알 수 없음', color: 'default' as const }
+      'APPROVE': { label: '승인', color: 'success' as const },
+      'REJECT': { label: '반려', color: 'default' as const },
+      'PENDING': { label: '대기중', color: 'error' as const }
     };
-    return userChipMap[value as Status] || userChipMap['Default'];
+    return userChipMap[value as Status] || userChipMap['PENDING'];
   } else {
     // IApproval의 approval_status용 chipMap
     const approvalChipMap = {
-      'Pending': { label: '결재중', color: 'info' as const },
+      'Pending': { label: '대기중', color: 'info' as const },
       'Approved': { label: '승인', color: 'success' as const },
       'Rejected': { label: '반려', color: 'error' as const },
       'Default': { label: '알 수 없음', color: 'default' as const }
@@ -39,12 +39,12 @@ function makeUserColumns(goDetail: (id: number) => void, showActions = true): Gr
   const base: GridColDef<IUser>[] = [
     { field: 'name', headerName: '이름', flex: 0.6, minWidth: 120 },
     { field: 'position', headerName: '직급', flex: 0.5, minWidth: 90 },
-    { field: 'email', headerName: '이메일', flex: 1.2, minWidth: 180 },
     { field: 'department', headerName: '부서', flex: 0.8, minWidth: 110 },
-    { field: 'role', headerName: '권한', flex: 0.8, minWidth: 110 },
+    { field: 'email', headerName: '이메일', flex: 1.2, minWidth: 180 },
+    // { field: 'role', headerName: '권한', flex: 0.8, minWidth: 110 },
     {
       field: 'status',
-      headerName: '상태',
+      headerName: '결재상태',
       width: 150,
       renderCell: ({ value }: GridRenderCellParams<IUser, Status>) => {
         const chipProps = getChipProps(value || 'approval','user');
@@ -100,6 +100,7 @@ function makeApprovalColumns(goDetail: (id: number) => void, showActions = true)
       width: 150,
       renderCell: ({ value }: GridRenderCellParams<IApproval, string>) => {
         const chipProps = getChipProps(value || 'approval', 'user');
+        console.log("chipProps>> ",chipProps);
         return (
           <Chip
             label={chipProps.label}
@@ -138,6 +139,7 @@ export default function DataTable<T extends IUser | IApproval>({
   dataType
 }: TableProps<T>) {
   // 데이터 타입에 따라 적절한 컬럼 선택
+  console.log("데이터타입 출력 =>> ",dataType);
   const columns = dataType === 'user' 
     ? makeUserColumns(onDetail, showActions) as GridColDef<T>[]
     : makeApprovalColumns(onDetail, showActions) as GridColDef<T>[];

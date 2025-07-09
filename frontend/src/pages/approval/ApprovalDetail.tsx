@@ -17,7 +17,7 @@ import { Grid } from '@mui/material';
 import { PictureAsPdf, Check, Close } from '@mui/icons-material';
 import { useParams, useNavigate } from 'react-router-dom';
 import type { Approval } from '../../types/approval';
-import { mockUser } from '../../data/mockData';
+import { mockUsers ,mockApprovals } from '../../mock/IApproval';
 
 const ApprovalDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -97,13 +97,13 @@ const ApprovalDetail: React.FC = () => {
     return new Date(dateString).toLocaleString('ko-KR');
   };
 
-  const canApproveOrReject = () => {
-    return (
-      approval?.approval_status === 'PENDING' &&
-      (mockUser.role === 'ADMIN' || mockUser.role === 'MANAGER') &&
-      approval.approver_id === mockUser.id
-    );
-  };
+  // const canApproveOrReject = () => {
+  //   return (
+  //     approval?.approval_status === 'PENDING' &&
+  //     (mockUser.role === 'ADMIN' || mockUser.role === 'MANAGER') &&
+  //     approval.approver_id === mockUser.id
+  //   );
+  // };
 
   if (!approval) {
     return <Typography>로딩 중...</Typography>;
@@ -249,7 +249,6 @@ const ApprovalDetail: React.FC = () => {
             </Grid>
           )}
 
-          {canApproveOrReject() && (
             <Grid item xs={12} component="table" >
               <Box sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end', mt: 3 }}>
                 <Button
@@ -270,7 +269,6 @@ const ApprovalDetail: React.FC = () => {
                 </Button>
               </Box>
             </Grid>
-          )}
 
           <Grid item xs={12}>
             <Box sx={{ display: 'flex', justifyContent: 'flex-start', mt: 2 }}>
