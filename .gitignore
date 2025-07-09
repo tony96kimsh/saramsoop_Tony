@@ -320,6 +320,7 @@ uploads/
 ## HR Management System specific
 /backend/HRManagementBackend/wwwroot/uploads/
 /frontend/hr-management-frontend/public/uploads/
+/backend/.vs
 
 ## Documentation builds
 docs/_build/
@@ -335,6 +336,8 @@ TestResults/
 ## Backup files
 *.bak
 *.backup
+
+*.vs
 
 ## ====================
 # Docker (if used)
