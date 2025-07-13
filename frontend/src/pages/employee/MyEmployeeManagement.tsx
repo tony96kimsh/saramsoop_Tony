@@ -8,7 +8,7 @@ export default function MyEmployeePage() {
   return (
     <EmployeeTabs
       userId={userId}
-      role="Employee"
+      role="EMPLOYEE"
       employees={employees}
       setEmployees={setEmployees}
       showCheckbox={false}
