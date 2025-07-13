@@ -1,4 +1,5 @@
 using backend.Data;
+using backend.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -21,6 +22,22 @@ namespace backend
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            // EmployeeService 등록
+            builder.Services.AddScoped<EmployeeService>();
+
+            // ======= CORS 정책 추가 =======
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend", policy =>
+                {
+                    policy
+                        .WithOrigins("http://localhost:5173", "https://localhost:5173") // 프론트엔드 개발 서버 주소
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+            // ===================================
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -32,8 +49,11 @@ namespace backend
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            // ======= CORS 미들웨어 활성화 =======
+            app.UseCors("AllowFrontend");
+            // ===================================
 
+            app.UseAuthorization();
 
             app.MapControllers();
 
