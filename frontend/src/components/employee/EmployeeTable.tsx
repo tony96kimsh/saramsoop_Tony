@@ -5,10 +5,10 @@ import {
   GridLogicOperator,
 } from '@mui/x-data-grid';
 import { Chip, Button, Stack, Typography } from '@mui/material';
-import type { EmployeeDetail, Status } from '../../mock/Employees';
+import type { Employee, Status } from './EmployeeTypes';
 
 interface EmployeeTableProps {
-  rows: EmployeeDetail[];
+  rows: Employee[];
   onDetail: (id: number) => void;
   showActions?: boolean;
   showCheckbox?: boolean;
@@ -18,8 +18,8 @@ interface EmployeeTableProps {
 function makeColumns(
   goDetail: (id: number) => void,
   showActions = true
-): GridColDef<EmployeeDetail>[] {
-  const base: GridColDef<EmployeeDetail>[] = [
+): GridColDef<Employee>[] {
+  const base: GridColDef<Employee>[] = [
     { field: 'id', headerName: '사원번호', flex: 0.3, minWidth: 70 },
     { field: 'name', headerName: '이름', flex: 0.6, minWidth: 120 },
     { field: 'position', headerName: '직급', flex: 0.5, minWidth: 90 },
@@ -29,7 +29,7 @@ function makeColumns(
       field: 'status',
       headerName: '상태',
       width: 150,
-      renderCell: ({ value }: GridRenderCellParams<EmployeeDetail, Status>) => (
+      renderCell: ({ value }: GridRenderCellParams<Employee, Status>) => (
         <Chip
           label={value === 'Active' ? '재직' : '휴직'}
           color={value === 'Active' ? 'success' : 'default'}
