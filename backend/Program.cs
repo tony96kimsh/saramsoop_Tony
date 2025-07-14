@@ -3,6 +3,7 @@ using backend.Repositories.Interfaces;
 using backend.Repositories.Implementations;
 using backend.Services;
 using backend.Services.Interfaces;
+using backend.Services.Implementations;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend

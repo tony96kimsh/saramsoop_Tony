@@ -1,3 +1,5 @@
+// Contorollers/attendanceController.cs
+
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -17,10 +19,16 @@ namespace backend.Controllers
             _service = service;
         }
 
-        [HttpGet("{userId}")]
-        public async Task<ActionResult<IEnumerable<AttendanceDto>>> GetByUser(int userId)
+        // 사번으로 근태 조회 (EMP001 등)
+        [HttpGet("{empNo}")]
+        public async Task<ActionResult<IEnumerable<AttendanceDto>>> GetByEmpNo(string empNo)
         {
-            var data = await _service.GetAttendanceByUser(userId);
+            var data = await _service.GetAttendanceByEmpNo(empNo);
+            if (data == null)
+            {
+                return NotFound(new { message = $"No attendance found for empNo '{empNo}'" });
+            }
+
             return Ok(data);
         }
 

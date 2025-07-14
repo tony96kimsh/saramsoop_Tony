@@ -1,3 +1,5 @@
+// Models/Attendance.cs
+
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -44,7 +46,7 @@ namespace backend.Models
 
         // Navigation properties
         [ForeignKey("UserId")]
-        public virtual User? User { get; set; }
+        public virtual EmployeeUser? User { get; set; }  // ✅ 정확한 타입 지정
 
         // [ForeignKey("LeaveRequestId")]
         // public virtual LeaveRequest? LeaveRequest { get; set; }
