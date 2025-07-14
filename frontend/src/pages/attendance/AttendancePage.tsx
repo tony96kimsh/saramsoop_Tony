@@ -11,7 +11,7 @@ import axios from 'axios';
 type UserRole = 'Employee' | 'Admin' | 'Manager' | 'Dev';
 
 function AttendancePage() {
-  const nowUser = 'EMP001'; // ✅ 추후 로그인 정보로 대체 예정
+  const nowUser = 'EMP001'; // 추후 로그인 정보로 대체 예정
 
   const [userId, setUserId] = useState<string>('');
   const [userRole, setUserRole] = useState<UserRole>('Dev'); // 개발용 디폴트
