@@ -84,12 +84,12 @@ export default function ApprovalAdmin() {
 
     try {
       setLoading(true);
-      const idsAsNumbers = selectedIds.map(id => Number(id)).filter(id => !isNaN(id));
-      await approvalService.deleteMultipleApprovals(idsAsNumbers);
+      // const idsAsNumbers = selectedIds.map(id => Number(id)).filter(id => !isNaN(id));
+      // await approvalService.deleteMultipleApprovals(idsAsNumbers);
       
-      // 성공 후 데이터 새로고침 및 선택 초기화
-      await fetchApprovals(params);
-      setSelectedIds([]);
+      // // 성공 후 데이터 새로고침 및 선택 초기화
+      // await fetchApprovals(params);
+      // setSelectedIds([]);
       alert('삭제가 완료되었습니다.');
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : '삭제 중 오류가 발생했습니다.';

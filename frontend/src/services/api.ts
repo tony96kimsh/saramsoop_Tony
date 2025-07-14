@@ -26,22 +26,45 @@ class ApiService {
   private baseURL: string;
 
   constructor() {
-    this.baseURL = import.meta.env.VITE_API_URL || '/api';
-     console.log('🔗 프록시 Proxy:', this.baseURL.startsWith('/'));
+    this.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5277/api';
+     console.log('🔗 API Base URL >>>', this.baseURL);
+
+     // 개발환경에서 자동 토큰 설정
+    this.initializeDevToken();
+  }
+
+  // 🔥 개발용 토큰 자동 초기화
+  private initializeDevToken(): void {
+    // 개발환경이 아니면 무시
+    if (import.meta.env.NODE_ENV !== 'development') {
+      return;
+    }
+
+    const existingToken = localStorage.getItem('token');
+    const devToken = import.meta.env.VITE_DEV_TOKEN;
+    console.log("devToken>>",devToken);
+    
+    // 토큰이 없고 환경변수에 개발용 토큰이 있으면 localstorage에 set 함.
+    if (!existingToken && devToken) {
+      localStorage.setItem('token', devToken);
+      localStorage.setItem('user', JSON.stringify({
+        id: 1,
+        name: '개발자',
+        role: 'Admin',
+        email: 'dev@example.com',
+        empNo: 'DEV001'
+      }));
+      console.log('🔧 개발용 토큰 자동 설정 완료');
+      console.log('🎯 토큰:', devToken.substring(0, 30) + '...');
+    } else if (existingToken) {
+      console.log('✅ 기존 토큰 존재:', existingToken.substring(0, 30) + '...');
+    } else {
+      console.log('⚠️ 개발용 토큰이 환경변수에 설정되지 않음');
+    }
   }
 
   private getAuthHeaders(): HeadersInit {
-    let token = localStorage.getItem('token');
-    
-
-    //토큰 없을 때 개발용 임시 토큰 생성
-    if (!token && import.meta.env.NODE_ENV === 'development') {
-      // token = import.meta.env.VITE_DEV_TOKEN;
-       token = this.generateDevToken();
-      //토큰 둘 중 하나 써도 됨
-      if (token != null) localStorage.setItem('token', token);
-      console.log('🔧 개발용 임시 토큰 생성:', token);
-    }
+    const token = localStorage.getItem('token');
 
     console.log(`토큰 >>>> ${token}`);
 
@@ -51,24 +74,6 @@ class ApiService {
       ...(token && { 'Authorization': `Bearer ${token}` })
     };
   }
-
-// 개발용 임시 토큰 생성 함수
-  private generateDevToken(): string {
-    // JWT 형태의 개발용 토큰 생성 (실제로는 서명되지 않음)
-    const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
-    const payload = btoa(JSON.stringify({
-      sub: 'dev-user',
-      name: '테스트',
-      role: 'Admin',
-      exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24), // 24시간 후 만료
-      iat: Math.floor(Date.now() / 1000)
-    }));
-    const signature = btoa('dev-signature');
-    
-    return `${header}.${payload}.${signature}`;
-  }
-
-  
 
 
   private async handleResponse<T>(response: Response): Promise<T> {
