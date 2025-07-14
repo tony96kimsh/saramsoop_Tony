@@ -3,17 +3,17 @@ import {
   Avatar, Box, Divider, FormControl, InputLabel, MenuItem,
   Paper, Select, Stack, TextField, Typography,
 } from '@mui/material';
-import type { EmployeeDetail } from '../../mock/Employees';
+import type { Employee } from './EmployeeTypes';
 import type { Role } from '../../types/role';
 import type { SelectChangeEvent } from '@mui/material/Select';
 
 interface EmployeeFormProps {
-  employeeFormData: EmployeeDetail;
-  setEmployeeFormData: React.Dispatch<React.SetStateAction<EmployeeDetail>>;
+  employeeFormData: Employee;
+  setEmployeeFormData: React.Dispatch<React.SetStateAction<Employee>>;
   showAvatar?: boolean;
 }
 
-const employeeFields: Array<[string, keyof EmployeeDetail]> = [
+const employeeFields: Array<[string, keyof Employee]> = [
   ['Name', 'name'],
   ['Date of Birth', 'birth'],
   ['Phone Number', 'phone'],
@@ -31,7 +31,7 @@ const employeeFields: Array<[string, keyof EmployeeDetail]> = [
 ];
 
 export default function EmployeeForm({ employeeFormData, setEmployeeFormData, showAvatar = true }: EmployeeFormProps) {
-  const handleInputChange = (key: keyof EmployeeDetail) => (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (key: keyof Employee) => (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmployeeFormData(prev => ({ ...prev, [key]: e.target.value }));
   };
 
@@ -60,9 +60,9 @@ export default function EmployeeForm({ employeeFormData, setEmployeeFormData, sh
                 label="역할"
                 onChange={handleRoleChange}
               >
-                <MenuItem value="Admin">관리자</MenuItem>
-                <MenuItem value="Manager">팀장</MenuItem>
-                <MenuItem value="Employee">사원</MenuItem>
+                <MenuItem value="ADMIN">관리자</MenuItem>
+                <MenuItem value="MANAGER">팀장</MenuItem>
+                <MenuItem value="EMPLOYEE">사원</MenuItem>
               </Select>
             </FormControl>
           </Box>

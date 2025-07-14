@@ -3,12 +3,12 @@ import { useEmployees } from '../../components/employee/EmployeeProvider';
 
 export default function AdminEmployeePage() {
   const { employees, setEmployees } = useEmployees();
-  const userId = 11; // 관리자 ID
+  const userId = 1; // 관리자 ID
 
   return (
     <EmployeeTabs
       userId={userId}
-      role="Admin"
+      role="ADMIN"
       employees={employees}
       setEmployees={setEmployees}
       showAddButton
