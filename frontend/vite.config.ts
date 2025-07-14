@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
+    port: 5173,
     proxy: {
       '/api': {
         target: 'http://localhost:5277', // ✅ 현재 나의 백엔드 주소
@@ -13,4 +14,5 @@ export default defineConfig({
       },
     },
   },
+  envPrefix: 'VITE_',
 });

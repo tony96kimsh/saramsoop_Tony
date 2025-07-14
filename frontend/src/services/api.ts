@@ -26,7 +26,8 @@ class ApiService {
   private baseURL: string;
 
   constructor() {
-    this.baseURL = process.env.REACT_APP_API_URL || 'https://localhost:7177/api';
+    this.baseURL = import.meta.env.VITE_API_URL || '/api';
+     console.log('🔗 프록시 Proxy:', this.baseURL.startsWith('/'));
   }
 
   private getAuthHeaders(): HeadersInit {
