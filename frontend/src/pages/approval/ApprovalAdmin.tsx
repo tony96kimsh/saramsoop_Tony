@@ -8,8 +8,10 @@ import {
   approvalService, 
   type ApprovalListRequest, 
   type ApprovalDto, 
-   PaginationResponse 
 } from '../../services/approvalService';
+
+import type { PaginationResponse } from '../../services/api';
+import type { GridRowId } from '@mui/x-data-grid';
 
 //관리자,팀장용 결재 리스트
 //결재 : 사원,팀장은 admin, admin은 다른 admin에게 결재 가능
@@ -20,7 +22,7 @@ export default function ApprovalAdmin() {
   const [data, setData] = useState<PaginationResponse<ApprovalDto> | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [selectedIds, setSelectedIds] = useState<number[]>([]); // 선택된 항목들
+  const [selectedIds, setSelectedIds] = useState<GridRowId[]>([]); // 선택된 항목들
 
   // 페이지네이션 및 필터 상태
   const [params, setParams] = useState<ApprovalListRequest>({
@@ -82,7 +84,8 @@ export default function ApprovalAdmin() {
 
     try {
       setLoading(true);
-      await approvalService.deleteMultipleApprovals(selectedIds);
+      const idsAsNumbers = selectedIds.map(id => Number(id)).filter(id => !isNaN(id));
+      await approvalService.deleteMultipleApprovals(idsAsNumbers);
       
       // 성공 후 데이터 새로고침 및 선택 초기화
       await fetchApprovals(params);
@@ -100,6 +103,11 @@ export default function ApprovalAdmin() {
   // 새로고침 핸들러
   const handleRefresh = () => {
     fetchApprovals(params);
+  };
+
+  // 선택 변경 핸들러 - GridRowId[] 타입 처리
+  const handleSelectionChange = (ids: GridRowId[]) => {
+    setSelectedIds(ids);
   };
 
   // 결재 승인/거부 핸들러 (테이블에서 호출할 수 있도록)
@@ -217,14 +225,14 @@ export default function ApprovalAdmin() {
             hasNextPage={data.hasNextPage}
             hasPreviousPage={data.hasPreviousPage}
             selectedIds={selectedIds}
-            onSelectionChange={setSelectedIds}
+            onSelectionChange={handleSelectionChange}
             onDetail={(id) => navigate(`/approval/${id}`, { state: { canEdit: true } })}
             onPageChange={handlePageChange}
             onSortChange={handleSortChange}
             onFilterChange={handleFilterChange}
             onApprovalAction={handleApprovalAction}
             onRefresh={handleRefresh}
-            dataType="user"
+            dataType="approval"
             showActions={true}
             showCheckbox={true}
             loading={loading}

@@ -1,4 +1,4 @@
-import { apiService, type ApiResponse, type PaginationRequest, type PaginationResponse } from './api';
+import { apiService, type ApiResponse, type PaginationRequest } from './api';
 
 export interface ApprovalDto {
   id: number;
@@ -45,6 +45,16 @@ export interface ApprovalActionRequest {
   id: number;
   action: 'approve' | 'reject';
   comment?: string;
+}
+
+export interface PaginationResponse<T> {
+  items: T[];
+  totalCount: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
 }
 
 class ApprovalService {
