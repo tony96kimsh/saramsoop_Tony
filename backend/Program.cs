@@ -1,7 +1,9 @@
 using backend.Data;
+using backend.Repositories.Interfaces;
+using backend.Repositories.Implementations;
 using backend.Services;
+using backend.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace backend
 {
@@ -12,35 +14,34 @@ namespace backend
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            // DbContext µÓ∑œ
+            // ‚úÖ DbContext Îì±Î°ù
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            // EmployeeService µÓ∑œ
+            // ‚úÖ ÏÑúÎπÑÏä§ Î∞è Î†àÌè¨ÏßÄÌÜ†Î¶¨ DI Îì±Î°ù
             builder.Services.AddScoped<EmployeeService>();
 
-            // ======= CORS ¡§√• √ﬂ∞° =======
+            builder.Services.AddScoped<IAttendanceRepository, AttendanceRepository>();
+            builder.Services.AddScoped<IAttendanceService, AttendanceService>();
+
+            // ‚úÖ CORS Ï†ïÏ±Ö
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowFrontend", policy =>
                 {
                     policy
-                        .WithOrigins("http://localhost:5173", "https://localhost:5173") // «¡∑–∆Æø£µÂ ∞≥πﬂ º≠πˆ ¡÷º“
+                        .WithOrigins("http://localhost:5173", "https://localhost:5173")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });
             });
-            // ===================================
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -49,9 +50,7 @@ namespace backend
 
             app.UseHttpsRedirection();
 
-            // ======= CORS πÃµÈø˛æÓ »∞º∫»≠ =======
             app.UseCors("AllowFrontend");
-            // ===================================
 
             app.UseAuthorization();
 
