@@ -242,7 +242,7 @@ namespace backend.Controllers
         /// 승인 가능한 사용자 목록 조회
         /// </summary>
         [HttpGet("approvers")]
-        public async Task<ActionResult<IEnumerable<UserDto>>> GetAvailableApprovers()
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetAvailableApprovers()
         {
             try
             {
