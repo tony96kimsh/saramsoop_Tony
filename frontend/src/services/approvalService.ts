@@ -49,7 +49,7 @@ export interface ApprovalActionRequest {
 
 class ApprovalService {
   async getApprovals(params: ApprovalListRequest): Promise<PaginationResponse<ApprovalDto>> {
-    return apiService.get<PaginationResponse<ApprovalDto>>('/approvals', params);
+    return apiService.get<PaginationResponse<ApprovalDto>>('/approvals', params as unknown as Record<string, unknown>);
   }
 
   async getApprovalById(id: number): Promise<ApprovalDto> {
@@ -85,12 +85,12 @@ class ApprovalService {
 
   // 내가 승인해야 할 결재 목록
   async getMyPendingApprovals(params: PaginationRequest): Promise<PaginationResponse<ApprovalDto>> {
-    return apiService.get<PaginationResponse<ApprovalDto>>('/approvals/my-pending', params);
+    return apiService.get<PaginationResponse<ApprovalDto>>('/approvals/my-pending', params as unknown as Record<string, unknown>);
   }
 
   // 내가 요청한 결재 목록
   async getMyRequestedApprovals(params: PaginationRequest): Promise<PaginationResponse<ApprovalDto>> {
-    return apiService.get<PaginationResponse<ApprovalDto>>('/approvals/my-requests', params);
+    return apiService.get<PaginationResponse<ApprovalDto>>('/approvals/my-requests', params as unknown as Record<string, unknown>);
   }
 
   // 결재 통계

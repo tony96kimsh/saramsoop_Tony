@@ -54,7 +54,7 @@ export interface AttendanceStatsDto {
 
 class AttendanceService {
   async getAttendances(params: AttendanceListRequest): Promise<PaginationResponse<AttendanceDto>> {
-    return apiService.get<PaginationResponse<AttendanceDto>>('/attendances', params);
+    return apiService.get<PaginationResponse<AttendanceDto>>('/attendances', params as unknown as Record<string, unknown>);
   }
 
   async getAttendanceById(id: number): Promise<AttendanceDto> {
@@ -62,7 +62,7 @@ class AttendanceService {
   }
 
   async getMyAttendances(params: PaginationRequest): Promise<PaginationResponse<AttendanceDto>> {
-    return apiService.get<PaginationResponse<AttendanceDto>>('/attendances/my-attendances', params);
+    return apiService.get<PaginationResponse<AttendanceDto>>('/attendances/my-attendances', params as unknown as Record<string, unknown>);
   }
 
   async getTodayAttendance(): Promise<AttendanceDto | null> {
