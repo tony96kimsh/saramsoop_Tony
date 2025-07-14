@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, Divider, Stack, Chip, Alert } from '@mui/material';
 import logo from '/logo.png';
 import { Link } from 'react-router-dom';
+import { TokenManager } from '../../utils/tokenUtils';
 
 interface LoginFormProps {
   onSubmit: (employeeNo: string, password: string) => void;
@@ -45,13 +46,16 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
         const data = await response.json();
         
         // 토큰과 사용자 정보 저장
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
+        TokenManager.setToken(data.token);
+        TokenManager.setUser(data.user);
         
         console.log('✅ 개발용 로그인 성공:', data);
+        TokenManager.logTokenStatus();
         
         // 성공 시 페이지 이동 (또는 상태 업데이트)
-        window.location.href = '/dashboard'; // 원하는 페이지로 변경
+         setTimeout(() => {
+          window.location.href = '/dashboard'; 
+        }, 500); 
       } else {
         const errorData = await response.json();
         setDevError(errorData.message || '개발용 로그인 실패');
@@ -62,6 +66,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
     } finally {
       setDevLoading(false);
     }
+  };
+
+  // 🔥 현재 로그인 상태 확인 (디버깅용)
+  const checkCurrentStatus = () => {
+    console.log('🔍 현재 TokenManager 상태:');
+    TokenManager.logTokenStatus();
+    alert(`로그인 상태: ${TokenManager.isLoggedIn() ? '로그인됨' : '로그아웃됨'}`);
   };
 
   return (
@@ -140,6 +151,17 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
               }} 
             />
           </Divider>
+
+           {/* 🔥 현재 로그인 상태 표시 */}
+          <Box sx={{ mb: 2, textAlign: 'center' }}>
+            <Chip 
+              label={TokenManager.isLoggedIn() ? `로그인됨: ${TokenManager.getUser()?.name}` : '로그아웃 상태'}
+              color={TokenManager.isLoggedIn() ? 'success' : 'default'}
+              size="small"
+              onClick={checkCurrentStatus}
+              sx={{ cursor: 'pointer' }}
+            />
+          </Box>
 
           {/* 개발용 에러 메시지 */}
           {devError && (

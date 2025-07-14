@@ -37,6 +37,8 @@ export class TokenManager {
 
   // 토큰 설정
   static setToken(token: string): void {
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(TokenManager.getUser()));
     localStorage.setItem(this.TOKEN_KEY, token);
     console.log('✅ TokenManager: 토큰 설정됨');
   }
