@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, useRoutes } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AppRoutes from './routes';
+
+const queryClient = new QueryClient();
 
 const RoutesRenderer = () => {
   const element = useRoutes(AppRoutes);
@@ -8,9 +11,11 @@ const RoutesRenderer = () => {
 
 function App() {
   return (
-    <Router>
-      <RoutesRenderer />
-    </Router>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <RoutesRenderer />
+      </Router>
+    </QueryClientProvider>
   );
 }
 

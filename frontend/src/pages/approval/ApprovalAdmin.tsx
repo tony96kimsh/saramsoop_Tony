@@ -2,7 +2,6 @@ import { mockUsers ,mockApprovals } from '../../mock/IApproval';
 import ApprovalTable from '../../components/ApprovalTable';
 import { Box, Button, Paper, Stack, Toolbar, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/layout/Header';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 
