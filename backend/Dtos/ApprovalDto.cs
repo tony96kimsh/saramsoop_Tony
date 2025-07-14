@@ -103,16 +103,4 @@ namespace backend.Dtos
         public double ApprovalRate { get; set; }
     }
 
-    public class UserDto
-    {
-        public int Id { get; set; }
-        public string EmpNo { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
-        public string Name { get; set; } = string.Empty;
-        public string Role { get; set; } = string.Empty;
-        public int DepartmentId { get; set; }
-        public int PositionId { get; set; }
-        public string? DepartmentName { get; set; }
-        public string? PositionName { get; set; }
-    }
 }

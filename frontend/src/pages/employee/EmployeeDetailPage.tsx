@@ -7,49 +7,43 @@ import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import CloseIcon from '@mui/icons-material/Close';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import type { EmployeeDetail } from '../../mock/Employees';
 import { useEmployees } from '../../components/employee/EmployeeProvider';
+import type { Employee } from '../../components/employee/EmployeeTypes';
 import { useEffect, useState } from 'react';
 
 export default function EmployeeDetailPage() {
-  /* ---------- 1. 라우터 & 컨텍스트 ---------- */
   const { id } = useParams();
   const navigate = useNavigate();
   const { employees, setEmployees } = useEmployees();
   const location = useLocation();
   const { canEdit = false } = (location.state || {}) as { canEdit?: boolean };
 
-  /* ---------- 2. 직원 찾기 (undefined 가능) ---------- */
   const emp = employees.find(e => e.id === Number(id));
 
-  /* ---------- 3. 훅: 조건 없이 한 번만 호출 ---------- */
-  // (1) 편집 모드
   const [editMode, setEditMode] = useState<boolean>(false);
   const toggleEdit = () => canEdit && setEditMode(true);
-  // (2) 폼 상태: 처음엔 null, emp가 있으면 useEffect로 세팅
-  const [form, setForm] = useState<EmployeeDetail | null>(null);
+
+  const [form, setForm] = useState<Employee | null>(null);
 
   useEffect(() => {
-    if (emp) setForm({ ...emp });        // emp를 복사해 초기값으로
+    if (emp) setForm({ ...emp });
   }, [emp]);
 
-  /* ---------- 4. emp나 form이 없으면 메시지 ---------- */
   if (!emp || !form) {
     return <Typography sx={{ mt: 8, textAlign: 'center' }}>직원을 찾을 수 없습니다.</Typography>;
   }
 
-  /* ---------- 5. 이벤트 핸들러 ---------- */
-  const handleChange = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) =>
-    setForm(f => f ? { ...f, [k]: e.target.value} : f);
+  const handleChange = (k: keyof Employee) => (e: React.ChangeEvent<HTMLInputElement>) =>
+    setForm(f => f ? { ...f, [k]: e.target.value } : f);
 
   const handleSave = () => {
-    setEmployees((prev) =>
+    setEmployees(prev =>
       prev.map(e => (e.id === emp.id ? { ...form } : e))
     );
     setEditMode(false);
   };
 
-  const rows: Array<[string, keyof EmployeeDetail]> = [
+  const rows: Array<[string, keyof Employee]> = [
     ['Name', 'name'],
     ['Role', 'role'],
     ['Date of Birth', 'birth'],
@@ -60,7 +54,7 @@ export default function EmployeeDetailPage() {
     ['Department', 'department'],
     ['Position', 'position'],
     ['Years of Experience', 'career'],
-    ['Hire / Resign', 'join'],   // join/leave는 아래 별도 처리
+    ['Hire / Resign', 'join'],
     ['Bank', 'bank'],
     ['Account Number', 'account'],
     ['Account Holder', 'holder'],
@@ -68,9 +62,7 @@ export default function EmployeeDetailPage() {
 
   return (
     <>
-      {/* <Header/> */}
       <Box sx={{ maxWidth: 'md', mx: 'auto', my: 4, mt: 10, px: 2 }}>
-        {/* 상단 버튼 */}
         <Stack direction="row" spacing={1} sx={{ mb: 3 }}>
           <Button startIcon={<ArrowBackIcon />} onClick={() => navigate(-1)}>
             Back
@@ -100,8 +92,7 @@ export default function EmployeeDetailPage() {
         </Toolbar>
 
         <Divider sx={{ mb: 4 }} />
-        
-        {/* 프로필 + ID */}
+
         <Box sx={{ textAlign: 'center', mb: 4 }}>
           <Avatar
             src={`https://i.pravatar.cc/150?u=${emp.id}`}
@@ -124,7 +115,6 @@ export default function EmployeeDetailPage() {
           </Typography>
         </Box>
 
-        {/* 정보 영역 */}
         <Paper sx={{ p: 3, mb: 3 }}>
           <Stack divider={<Divider flexItem />} spacing={2}>
             {rows.map(([label, key]) => (
@@ -155,7 +145,6 @@ export default function EmployeeDetailPage() {
               </Box>
             ))}
 
-            {/* join / leave 필드 – 편집 모드에서만 두 개의 입력창 */}
             {editMode && (
               <>
                 <Box
