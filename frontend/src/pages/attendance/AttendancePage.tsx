@@ -1,3 +1,5 @@
+// pages/attendance/AttendancePage.tsx
+
 import React, { useEffect, useState } from 'react';
 import { Typography, Box } from '@mui/material';
 import AttendanceTabs from '../../components/attendance/AttendanceTabs';
@@ -11,7 +13,7 @@ type UserRole = 'Employee' | 'Admin' | 'Manager' | 'Dev';
 function AttendancePage() {
   const nowUser = 'EMP001'; // ✅ 추후 로그인 정보로 대체 예정
 
-  const [userId, setUserId] = useState<number | null>(null);
+  const [userId, setUserId] = useState<string>('');
   const [userRole, setUserRole] = useState<UserRole>('Dev'); // 개발용 디폴트
   const [loading, setLoading] = useState(true);
 
