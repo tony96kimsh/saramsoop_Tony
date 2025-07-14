@@ -44,7 +44,7 @@ namespace backend.Models
 
         // Navigation properties
         [ForeignKey("UserId")]
-        public virtual User? User { get; set; }
+        public virtual EmployeeUser? EmployeeUser { get; set; }
 
         // [ForeignKey("LeaveRequestId")]
         // public virtual LeaveRequest? LeaveRequest { get; set; }

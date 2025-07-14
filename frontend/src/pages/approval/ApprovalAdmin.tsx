@@ -4,11 +4,11 @@ import { Box, Button, Paper, Stack, Toolbar, Typography, CircularProgress, Alert
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
-import type{ 
+import { 
   approvalService, 
-  ApprovalListRequest, 
-  ApprovalDto, 
-  PaginationResponse 
+  type ApprovalListRequest, 
+  type ApprovalDto, 
+   PaginationResponse 
 } from '../../services/approvalService';
 
 //관리자,팀장용 결재 리스트

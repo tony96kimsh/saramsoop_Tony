@@ -46,6 +46,7 @@ namespace backend.Controllers
 
         /// <summary>
         /// 결재 상세 조회
+        /// api/approval/{id}
         /// </summary>
         [HttpGet("{id}")]
         public async Task<ActionResult<ApprovalDto>> GetApproval(int id)
@@ -241,21 +242,21 @@ namespace backend.Controllers
         /// <summary>
         /// 승인 가능한 사용자 목록 조회
         /// </summary>
-        [HttpGet("approvers")]
-        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetAvailableApprovers()
-        {
-            try
-            {
-                var userId = GetCurrentUserId();
-                var result = await _approvalService.GetAvailableApproversAsync(userId);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error getting available approvers");
-                return StatusCode(500, new { message = "Internal server error", error = ex.Message });
-            }
-        }
+        //[HttpGet("approvers")]
+        //public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetAvailableApprovers()
+        //{
+        //    try
+        //    {
+        //        var userId = GetCurrentUserId();
+        //        var result = await _approvalService.GetAvailableApproversAsync(userId);
+        //        return Ok(result);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError(ex, "Error getting available approvers");
+        //        return StatusCode(500, new { message = "Internal server error", error = ex.Message });
+        //    }
+        //}
 
         /// <summary>
         /// 내가 승인해야 할 결재 목록 조회

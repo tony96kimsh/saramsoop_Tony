@@ -4,6 +4,8 @@ import { attendanceService } from './attendanceService';
 import { authService } from './authService';
 // import { employeeService } from './EmployeeService';
 
+//service 파일들 진입점
+//api 서비스들을 모아서 export
 export * from './api';
 export * from './authService';
 export * from './approvalService';
@@ -15,7 +17,7 @@ export const services = {
   api: apiService,
   auth: authService,
   approval: approvalService,
-//   employee: employeeService,
+  // employee: employeeService,
   attendance: attendanceService,
 };
 

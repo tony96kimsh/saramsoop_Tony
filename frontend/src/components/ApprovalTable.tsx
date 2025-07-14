@@ -6,6 +6,7 @@ import {
   type GridRowSelectionModel,
   type GridPaginationModel,
   type GridSortModel,
+  type GridRowId,
 } from '@mui/x-data-grid';
 import { Chip, Button, Stack, Typography, Box, IconButton, Tooltip } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
@@ -26,8 +27,8 @@ interface ApprovalTableProps {
   loading?: boolean;
 
   // 선택 관련
-  selectedIds: number[];
-  onSelectionChange: (ids: number[]) => void;
+  selectedIds: GridRowId[];
+  onSelectionChange: (ids: GridRowId[]) => void;
 
   // 액션 핸들러
   onDetail: (id: number) => void;
@@ -237,7 +238,7 @@ export default function ApprovalTable({
 
   // 선택 모델 변경 핸들러
   const handleSelectionChange = (selectionModel: GridRowSelectionModel) => {
-    onSelectionChange(selectionModel as number[]);
+    onSelectionChange(selectionModel as unknown as GridRowId[]);
   };
 
   return (
