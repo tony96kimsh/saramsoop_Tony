@@ -1,4 +1,3 @@
-// Dtos/AttendanceDto.cs
 using System;
 
 namespace backend.Dtos
@@ -26,5 +25,8 @@ namespace backend.Dtos
         public string? UserEmpNo { get; set; } // Create 시 empNo 기준 조회에 사용
         public string? DepartmentName { get; set; }
         public string? PositionName { get; set; }
+
+        // ✅ 프론트 요약 목록용 필드 (출퇴근 간 근무시간 계산 결과)
+        public string? WorkTime { get; set; }
     }
 }
