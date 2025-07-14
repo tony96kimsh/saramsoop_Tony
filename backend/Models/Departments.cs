@@ -14,6 +14,7 @@ namespace backend.Models
         /// 부서 ID (Primary Key)
         /// </summary>
         [Key]
+        [Column("id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 

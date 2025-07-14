@@ -8,6 +8,7 @@ namespace backend.Models
     {
         [Key]
         [Column("id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
@@ -29,6 +30,7 @@ namespace backend.Models
         [Column("updated_at")]
         public DateTime? UpdatedAt { get; set; }
 
-        public ICollection<EmployeeUser>? Users { get; set; }
+        //네비게이션 프로퍼티
+        public virtual ICollection<EmployeeUser>? EmployeeUsers { get; set; } = new List<EmployeeUser>();
     }
 }

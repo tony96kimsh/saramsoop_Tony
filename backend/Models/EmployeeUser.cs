@@ -8,6 +8,7 @@ namespace backend.Models
     {
         [Key]
         [Column("id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // 자동 생성 명시
         public int Id { get; set; }
 
         [Required]
@@ -92,8 +93,16 @@ namespace backend.Models
         [Column("updated_at")]
         public DateTime? UpdatedAt { get; set; }
 
-        // Navigation
-        public Department? Department { get; set; }
-        public Position? Position { get; set; }
+        // Navigation 
+        [ForeignKey(nameof(DepartmentId))]
+        public virtual Department? Department { get; set; }
+
+        [ForeignKey(nameof(PositionId))]
+        public virtual Position? Position { get; set; }
+
+        // 역방향 네비게이션 (선택사항)
+        public virtual ICollection<Attendance> Attendances { get; set; } = new List<Attendance>();
+        public virtual ICollection<Approval> RequestedApprovals { get; set; } = new List<Approval>();
+        public virtual ICollection<Approval> ApprovalTasks { get; set; } = new List<Approval>();
     }
 }

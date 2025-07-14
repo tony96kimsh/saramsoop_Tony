@@ -47,11 +47,11 @@ namespace backend.Models
         public DateTime? UpdatedAt { get; set; }
 
         // Navigation properties
-        [ForeignKey("RequesterId")]
-        public virtual EmployeeUser? Requester { get; set; }
+        [ForeignKey(nameof(RequesterId))]
+        public virtual EmployeeUser Requester { get; set; } = null!;
 
-        [ForeignKey("ApproverId")]
-        public virtual EmployeeUser? Approver { get; set; }
+        [ForeignKey(nameof(ApproverId))]
+        public virtual EmployeeUser Approver { get; set; } = null!;
     }
     
 }
