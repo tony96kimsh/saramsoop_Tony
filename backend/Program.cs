@@ -1,9 +1,12 @@
 using backend.Data;
 using backend.Repositories.Interfaces;
-using backend.Repositories.Implementations;
+//using backend.Repositories.Implementations;
 using backend.Services;
 using backend.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace backend
 {
@@ -38,8 +41,56 @@ namespace backend
             builder.Services.AddScoped<EmployeeService>();
             builder.Services.AddScoped<ApprovalService>();
 
-            builder.Services.AddScoped<IAttendanceRepository, AttendanceRepository>();
-            builder.Services.AddScoped<IAttendanceService, AttendanceService>();
+            //builder.Services.AddScoped<IAttendanceRepository, AttendanceRepository>();
+            //builder.Services.AddScoped<IAttendanceService, AttendanceService>();
+
+            // 🔥 개발용 JWT 인증 설정
+            var jwtKey = "dev-super-secret-key-for-development-only-123456789"; // 개발용 키
+            var key = Encoding.ASCII.GetBytes(jwtKey);
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false; // 개발환경에서는 HTTPS 불필요
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = false, // 개발환경에서는 서명 검증 스킵
+                    ValidateIssuer = false,           // 발급자 검증 스킵
+                    ValidateAudience = false,         // 대상 검증 스킵
+                    ValidateLifetime = false,         // 만료시간 검증 스킵
+                    ClockSkew = TimeSpan.Zero,
+
+                    // 🔥 개발용: 토큰이 있기만 하면 통과
+                    SignatureValidator = (token, parameters) => new System.IdentityModel.Tokens.Jwt.JwtSecurityToken(token)
+                };
+
+                // 🔥 개발용 이벤트 핸들러
+                options.Events = new JwtBearerEvents
+                {
+                    OnTokenValidated = context =>
+                    {
+                        Console.WriteLine($"✅ 토큰 검증 성공: {context.Principal?.Identity?.Name ?? "개발자"}");
+                        return Task.CompletedTask;
+                    },
+                    OnAuthenticationFailed = context =>
+                    {
+                        Console.WriteLine($"❌ 토큰 검증 실패: {context.Exception.Message}");
+                        return Task.CompletedTask;
+                    },
+                    OnMessageReceived = context =>
+                    {
+                        var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+                        Console.WriteLine($"📡 받은 토큰: {token?.Substring(0,20)}...");
+                        return Task.CompletedTask;
+                    }
+                };
+            });
+
 
             // ✅ CORS 정책
             builder.Services.AddCors(options =>
@@ -47,7 +98,7 @@ namespace backend
                 options.AddPolicy("AllowDevelopment", policy =>
                 {
                     policy
-                        .WithOrigins("http://localhost:5173", "http://localhost:3000")
+                        .WithOrigins("http://localhost:5173")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials();
