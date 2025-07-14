@@ -26,7 +26,7 @@ class ApiService {
   private baseURL: string;
 
   constructor() {
-    this.baseURL = process.env.REACT_APP_API_URL || 'https://localhost:7000/api';
+    this.baseURL = process.env.REACT_APP_API_URL || 'https://localhost:7177/api';
   }
 
   private getAuthHeaders(): HeadersInit {
