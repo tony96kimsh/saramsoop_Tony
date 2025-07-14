@@ -32,12 +32,12 @@ namespace backend.Data
 
                 // 관계 설정
                 entity.HasOne(e => e.Department)
-                    .WithMany(d => d.Employees)
+                    .WithMany(d => d.EmployeeUsers)
                     .HasForeignKey(e => e.DepartmentId)
                     .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(e => e.Position)
-                    .WithMany(p => p.Employees)
+                    .WithMany(p => p.EmployeeUsers)
                     .HasForeignKey(e => e.PositionId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
