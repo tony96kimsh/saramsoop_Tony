@@ -9,14 +9,14 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EmployeeTable from './EmployeeTable';
 import { useNavigate } from 'react-router-dom';
-import type { EmployeeDetail } from '../../mock/Employees';
+import type { Employee } from './EmployeeTypes';
 import { useEffect, useState } from 'react';
 
 interface EmployeeTabsProps {
   userId: number;
-  role: 'Admin' | 'Manager' | 'Employee';
-  employees: EmployeeDetail[];
-  setEmployees: React.Dispatch<React.SetStateAction<EmployeeDetail[]>>;
+  role: 'ADMIN' | 'MANAGER' | 'EMPLOYEE';
+  employees: Employee[];
+  setEmployees: React.Dispatch<React.SetStateAction<Employee[]>>;
   showAddButton?: boolean;
   showDeleteButton?: boolean;
   showCheckbox?: boolean;
@@ -34,36 +34,44 @@ export default function EmployeeTabs({
   showActions = true,
 }: EmployeeTabsProps) {
   const navigate = useNavigate();
-  const me = employees.find(e => e.id === userId) as EmployeeDetail;
-  const teamMembers = employees.filter(e => e.department === me.department);
+  const me = employees.find(e => e.id === userId) as Employee;
+  const isAdmin = role === 'ADMIN';
+  const isManager = role === 'MANAGER';
+  // const isEmployee = role === 'Employee';
+
+  const visibleEmployees = isAdmin
+    ? employees
+    : employees.filter(e => e.department === me.department);
   const [editMode, setEditMode] = useState(false);
-  const [form, setForm] = useState<EmployeeDetail | null>(null);
+  const [form, setForm] = useState<Employee | null>(null);
   const [tabIndex, setTabIndex] = useState(0); 
   // 체크박스 선택된 인원 선택 삭제
   const [selectedEmployeeIds, setSelectedEmployeeIds] = useState<number[]>([]);
 
   const tabTitle =
     tabIndex === 0
-      ? role === 'Admin'
+      ? role === 'ADMIN'
         ? '전체 직원'
-        : role === 'Manager'
+        : role === 'MANAGER'
         ? '부서 직원'
         : '팀 동료'
       : '내 정보';
 
-  useEffect(() => setForm(me), [me]);
+  useEffect(() => {
+    if (me) setForm(me);
+  }, [me]);
 
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => setTabIndex(newValue);
 
-  const editable: (keyof EmployeeDetail)[] =
-    role === 'Admin'
-      ? Object.keys(me) as (keyof EmployeeDetail)[]
+  const editable: (keyof Employee)[] =
+    role === 'ADMIN'
+      ? (me ? Object.keys(me) as (keyof Employee)[] : [])
       : ['email', 'address', 'postal', 'bank', 'account', 'holder'];
 
-  const canEdit = (k: keyof EmployeeDetail) => editMode && editable.includes(k);
+  const canEdit = (k: keyof Employee) => editMode && editable.includes(k);
 
   const handleChange =
-    (k: keyof EmployeeDetail) => (e: React.ChangeEvent<HTMLInputElement>) =>
+    (k: keyof Employee) => (e: React.ChangeEvent<HTMLInputElement>) =>
       setForm(f => f ? { ...f, [k]: e.target.value } : f);
 
   const handleSave = () => {
@@ -71,7 +79,7 @@ export default function EmployeeTabs({
     setEditMode(false);
   };
 
-  const rowsDef: [string, keyof EmployeeDetail][] = [
+  const rowsDef: [string, keyof Employee][] = [
     ['Name', 'name'], ['Role', 'role'], ['Date of Birth', 'birth'], ['Phone Number', 'phone'],
     ['Email', 'email'], ['Address', 'address'], ['Zip Code', 'postal'], ['Department', 'department'],
     ['Position', 'position'], ['Years of Experience', 'career'], ['Hire Date', 'join'],
@@ -84,14 +92,14 @@ export default function EmployeeTabs({
     <Box sx={{ maxWidth: 'lg', mx: 'auto', mt: 10, px: 2 }}>
       <Typography variant="h5" gutterBottom>{tabTitle}</Typography>
       <Tabs value={tabIndex} onChange={handleTabChange} sx={{ mb: 3 }}>
-        <Tab label={role === 'Admin' ? '전체 직원' : role === 'Manager' ? '부서 직원' : '팀 동료'} />
+        <Tab label={role === 'ADMIN' ? '전체 직원' : role === 'MANAGER' ? '부서 직원' : '팀 동료'} />
         <Tab label="내 정보" />
       </Tabs>
 
       {tabIndex === 0 && (
         <>
           <Stack direction="row" justifyContent="flex-end" alignItems="center" sx={{ mb: 2 }}>
-            {(role === 'Admin') && (
+            {(role === 'ADMIN') && (
               <Stack direction="row" gap={1}>
                 {showAddButton && (
                   <Button
@@ -122,10 +130,10 @@ export default function EmployeeTabs({
 
           <Paper sx={{ p: 3, mb: 5 }}>
             <EmployeeTable
-              rows={role === 'Admin' ? employees : teamMembers}
-              onDetail={(id) => navigate(`/employee/${id}`, { state: { canEdit: role === 'Admin' } })}
-              showCheckbox={showCheckbox}
-              showActions={showActions}
+              rows={visibleEmployees}
+              onDetail={(id) => navigate(`/employee/${id}`, { state: { canEdit: isAdmin } })}
+              showCheckbox={showCheckbox && isAdmin}
+              showActions={showActions && (isAdmin || isManager)}
               onSelectionChange={setSelectedEmployeeIds}
             />
           </Paper>

@@ -6,20 +6,18 @@ import SaveIcon from '@mui/icons-material/Save';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEmployees } from '../../components/employee/EmployeeProvider';
-import type { EmployeeDetail } from '../../mock/Employees';
+import type { Employee } from '../../components/employee/EmployeeProvider';
 import EmployeeForm from '../../components/employee/EmployeeForm';
-import { v4 as uuidv4 } from 'uuid';
 
 export default function EmployeeCreatePage() {
   const navigate = useNavigate();
   const { setEmployees } = useEmployees();
 
-  const [employeeFormData, setEmployeeFormData] = useState<EmployeeDetail>({
-    id: Number(uuidv4()), // 무작위 숫자 생성하는 범용 고유 식별자의 한 종류
+  const [employeeFormData, setEmployeeFormData] = useState<Employee>({
+    id: Date.now(), // 숫자형 고유 ID 생성법 (UUID 숫자 변환 대신)
     name: '',
-    role: 'Employee',
+    role: 'EMPLOYEE',
     birth: '',
-    regNo: '',
     phone: '',
     email: '',
     address: '',
