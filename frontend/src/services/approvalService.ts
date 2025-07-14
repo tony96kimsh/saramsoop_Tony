@@ -1,10 +1,10 @@
-import { apiService, type ApiResponse ,type PaginationRequest, type PaginationResponse } from './api';
+import { apiService, type ApiResponse, type PaginationRequest, type PaginationResponse } from './api';
 
 export interface ApprovalDto {
   id: number;
   requesterId: number;
   approverId: number;
-  approvalStatus: 'pending' | 'approved' | 'rejected';
+  approvalStatus: 'pending' | 'approved' | 'rejected'; // 'approve' -> 'approved'로 수정
   approvalName: string;
   approvalType: string;
   pendingTime?: string;
