@@ -1,4 +1,9 @@
 // pages/AttendancePage.tsx
+/**
+ * 코드 백엔드 설명
+ * nowUser 값을 emp_001로 받고 객체를 닷넷 서버에 요청한다.
+ */
+
 
 import React from 'react';
 import { Typography, Box } from '@mui/material';

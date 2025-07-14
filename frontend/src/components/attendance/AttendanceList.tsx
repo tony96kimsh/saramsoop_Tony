@@ -80,7 +80,7 @@ const columns: GridColDef<RowData>[] = [
     renderCell: ({ row }: GridRenderCellParams<RowData>) => (
       <Link
         component={RouterLink}
-        to={`/attend/${row.id}`}
+        to={`/attendance/${row.id}`}
         underline="hover"
         color="primary"
         sx={{ cursor: 'pointer' }}
