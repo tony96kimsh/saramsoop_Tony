@@ -9,10 +9,14 @@ A | B| C
 
 ## 기획서 및 개발 문서
 
-- [작업 로그(노션)](https://universal-gallium-010.notion.site/2059b2f7b0af804f870feea9b6471448?source=copy_link)
+- [작업 로그 노션 ](https://universal-gallium-010.notion.site/2059b2f7b0af804f870feea9b6471448?source=copy_link)
+
 <br>
-- [기획 및 개발 정의서 구글 슬라이드 ](https://docs.google.com/presentation/d/1cj48KtGpLL-fApoqQQtzJOlXoqCeXz00Ee7nb3GiBJg/edit?usp=sharing)
+
+- [기획 및 개발 정의서 구글 슬라이드](https://docs.google.com/presentation/d/1cj48KtGpLL-fApoqQQtzJOlXoqCeXz00Ee7nb3GiBJg/edit?usp=sharing)
+
 <br>
+
 - [협업 규칙](docs/cowork_rule.md)
 
 ---
