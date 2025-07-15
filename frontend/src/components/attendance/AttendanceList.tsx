@@ -1,19 +1,13 @@
-// Components > attendance > AttendanceList.tsx
-// 기간별 근태 기록 목록 (이름, 부서, 직급, 출퇴근시간, 근무시간, 상태)
-
-import { Link as RouterLink } from 'react-router-dom';
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import {
   DataGrid,
   type GridColDef,
   type GridRenderCellParams,
   GridLogicOperator,
 } from '@mui/x-data-grid';
-import { Paper, Chip } from '@mui/material';
-import { Link } from '@mui/material';
-
-import { dummyUsers, dummyAttendance } from './AttendDummy';
+import { Paper, Chip, Link } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 
 /* ---------- 타입 ---------- */
 type Status = 'Active' | 'Inactive';
@@ -29,47 +23,6 @@ interface RowData {
   status: Status;
 }
 
-/* ---------- 출근시간, 퇴근시간, 근무시간 계산 ---------- */
-function formatTime(datetime: string | null): string {
-  if (!datetime) return '-';
-  const date = new Date(datetime);
-  return date.toTimeString().slice(0, 5); // HH:MM
-}
-
-function calcWorkTime(inTime: string | null, outTime: string | null): string {
-  if (!inTime || !outTime) return '-';
-
-  const inDate = new Date(inTime);
-  const outDate = new Date(outTime);
-  const diffMs = outDate.getTime() - inDate.getTime();
-  const diffMin = Math.floor(diffMs / 60000);
-
-  const hours = Math.floor(diffMin / 60);
-  const minutes = diffMin % 60;
-
-  return `${hours}시간 ${minutes}분`;
-}
-
-/* ---------- rows 생성 ---------- */
-const rows: RowData[] = dummyUsers.map((user) => {
-  const records = dummyAttendance
-    .filter((a) => a.user_id === user.id)
-    .sort((a, b) => (b.attendance_date > a.attendance_date ? 1 : -1));
-
-  const recent = records[0];
-
-  return {
-    id: user.id,
-    name: user.name,
-    department: user.department,
-    position: user.position,
-    checkIn: formatTime(recent?.clock_in_time ?? null),
-    checkOut: formatTime(recent?.clock_out_time ?? null),
-    workTime: calcWorkTime(recent?.clock_in_time ?? null, recent?.clock_out_time ?? null),
-    status: user.status === 'ACTIVE' ? 'Active' : 'Inactive',
-  };
-});
-
 /* ---------- columns ---------- */
 const columns: GridColDef<RowData>[] = [
   {
@@ -80,7 +33,7 @@ const columns: GridColDef<RowData>[] = [
     renderCell: ({ row }: GridRenderCellParams<RowData>) => (
       <Link
         component={RouterLink}
-        to={`/attend/${row.id}`}
+        to={`/attendance/${row.id}`}
         underline="hover"
         color="primary"
         sx={{ cursor: 'pointer' }}
@@ -110,7 +63,21 @@ const columns: GridColDef<RowData>[] = [
 
 /* ---------- 컴포넌트 ---------- */
 export default function AttendanceList() {
+  const [rows, setRows] = useState<RowData[]>([]);
   const [pageSize, setPageSize] = useState(10);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get<RowData[]>('http://localhost:5277/api/attendance/summary');
+        setRows(res.data);
+      } catch (error) {
+        console.error('근태 목록 로딩 실패:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <Paper sx={{ height: '100%', width: '100%' }}>

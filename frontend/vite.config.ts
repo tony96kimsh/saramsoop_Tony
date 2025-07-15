@@ -1,14 +1,17 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+// vite.config.ts
 
-// https://vite.dev/config/
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+// https://vitejs.dev/config/
 export default defineConfig({
+  base: '/', // 배포 환경에서 라우팅 문제 방지
   plugins: [react()],
   server: {
     port: 5173,
     proxy: {
       '/api': {
-        target: 'http://localhost:5277', // ✅ 현재 나의 백엔드 주소
+        target: 'http://localhost:5277', // ✅ 로컬 백엔드 주소
         changeOrigin: true,
         secure: false,
       },
