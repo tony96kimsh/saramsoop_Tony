@@ -14,9 +14,9 @@ namespace backend.Services.Implementations
 {
     public class AttendanceService : IAttendanceService
     {
-        private readonly AppDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public AttendanceService(AppDbContext context)
+        public AttendanceService(ApplicationDbContext context)
         {
             _context = context;
         }

@@ -18,12 +18,12 @@ namespace backend.Controllers
         }
 
         // ✅ 전체 근태 요약 리스트 (프론트 DataGrid용)
-        [HttpGet("summary")]
-        public async Task<ActionResult<IEnumerable<AttendanceDto>>> GetAllSummaries()
-        {
-            var data = await _service.GetAllAttendanceSummaries();
-            return Ok(data);
-        }
+        //[HttpGet("summary")]
+        //public async Task<ActionResult<IEnumerable<AttendanceDto>>> GetAllSummaries()
+        //{
+        //    //var data = await _service.GetAllAttendanceSummaries();
+        //    //return Ok(data);
+        //}
 
         // 🔍 사번으로 근태 조회 (ex: EMP001)
         [HttpGet("{empNo}")]

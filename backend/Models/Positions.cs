@@ -55,6 +55,6 @@ namespace backend.Models
         /// <summary>
         /// 해당 직급의 직원 목록
         /// </summary>
-        public virtual ICollection<EmployeeUser> Users { get; set; } = new List<EmployeeUser>();
+        public virtual ICollection<EmployeeUser> EmployeeUsers { get; set; } = new List<EmployeeUser>();
     }
 }
