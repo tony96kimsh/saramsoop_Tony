@@ -4,19 +4,28 @@ A | B| C
 --|--|--|
 ![구현 사진](url) | ![구현 사진](url) | ![구현 사진](url) 
 
-## 목차
 
+## 목차
+- [기획서 및 개발 문서](#기획서-및-개발-문서)
+- [프로젝트 개요](#프로젝트-개요)
+  - [인원 소개 (4명)](#인원-소개-4명)
+  - [일정](#일정)
+  - [제작 배경](#제작-배경)
+  - [기술 스택](#기술-스택)
+  - [주요 기능](#주요-기능)
+- [프로젝트 구조](#프로젝트-구조)
+  - [레이아웃 구성](#레이아웃-구성)
+  - [폴더 구조](#폴더-구조)
+  - [DB 구조](#db-구조)
+- [개인 역할](#개인-역할)
 
 ## 기획서 및 개발 문서
 
 
-- [작업 로그 노션 ](https://universal-gallium-010.notion.site/2059b2f7b0af804f870feea9b6471448?source=copy_link)
-
-- [기획 및 개발 정의서 구글 슬라이드](https://docs.google.com/presentation/d/1cj48KtGpLL-fApoqQQtzJOlXoqCeXz00Ee7nb3GiBJg/edit?usp=sharing)
-
-- [협업 규칙](docs/cowork_rule.md)
-
-- [DB 구조 및 ERD](https://dbdiagram.io/d/684f63793cc77757c8f86fe8)
+1. [🔗 작업 로그 노션 ](https://universal-gallium-010.notion.site/2059b2f7b0af804f870feea9b6471448?source=copy_link)
+2. [🔗 기획 및 개발 정의서 구글 슬라이드](https://docs.google.com/presentation/d/1cj48KtGpLL-fApoqQQtzJOlXoqCeXz00Ee7nb3GiBJg/edit?usp=sharing)
+3. [🔗 DB 구조 및 ERD](https://dbdiagram.io/d/684f63793cc77757c8f86fe8)
+4. [🔗 협업 규칙](docs/cowork_rule.md)
 
 ---
 
@@ -167,4 +176,30 @@ A | B| C
 
 ---
 
-## 역할 분담
+## 개인 역할
+
+### 김민혁
+프론트엔드
+- 1
+백엔드
+- 1
+
+### 김성훈
+프론트엔드
+- 1
+백엔드
+- 1
+
+### 김한석
+프론트엔드
+- 1
+백엔드
+- 1
+
+### 최영비
+프론트엔드
+- 1
+백엔드
+- 1
+
+
