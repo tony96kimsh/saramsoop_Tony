@@ -6,7 +6,7 @@ import AttendanceDetailPage from "../pages/attendance/AttendanceDetailPage";
 
 const AttendanceRoutes: RouteObject[] = [
   {
-    path: '/attend',
+    path: '/attendance',
     element: (
       // <ProtectedRoute>
         <Layout>
@@ -16,7 +16,7 @@ const AttendanceRoutes: RouteObject[] = [
     ),
   },
   {
-    path: '/attend/:id',
+    path: '/attendance/:id',
     element: (
       // <ProtectedRoute>
         <Layout>

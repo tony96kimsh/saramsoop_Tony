@@ -1,3 +1,5 @@
+// Models/Attendance.cs
+
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -43,7 +45,7 @@ namespace backend.Models
         [Column("updated_at")]
         public DateTime? UpdatedAt { get; set; }
 
-        // ³×ºñ°ÔÀÌ¼Ç ÇÁ·ÎÆÛÆ¼
+        // ï¿½×ºï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼
         [ForeignKey(nameof(UserId))]
         public virtual EmployeeUser User { get; set; } = null!;
     }
