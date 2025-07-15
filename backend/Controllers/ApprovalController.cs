@@ -8,7 +8,7 @@ namespace backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     public class ApprovalController : ControllerBase
     {
         private readonly IApprovalService _approvalService;
