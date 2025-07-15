@@ -82,12 +82,38 @@
 
 
 ### 주요 기능
-1. JWT 토큰과 SHA 해시 알고리즘을 이용한 로그인 기능
-2. MUI를 사용한 프론트 화면 구성
-3. APS.NET을 통한 postgreSQL서버 제어
 
-    - MVC 모델 구현
-    - Entity ORM을 통한 C#코드를 통한 SQL 제어
+1. **JWT 기반 인증 및 보안**
+   - 사용자 로그인 시 JWT(JSON Web Token)를 발급하고, 프론트에서 이를 저장해 인증 처리
+   - 비밀번호는 SHA 해시 알고리즘으로 암호화 저장 및 검증
+
+2. **직원/근태/결재 등 ERP 핵심 기능 구현**
+   - 사용자(직원) 등록, 수정, 삭제 (CRUD)
+   - 근태 기록 등록, 수정, 조회 (출근, 지각, 조퇴, 병가 등)
+   - 휴가 신청 및 승인 프로세스 구현 (결재 요청 → 상태 변경)
+   - 연차 정보 관리 (연차 총합, 사용일, 잔여일)
+
+3. **프론트엔드 UI 및 UX**
+   - React 기반의 컴포넌트 구조화
+   - MUI(Material UI)로 직관적인 관리자 화면 구현
+   - 페이지 간 라우팅 및 동적 데이터 처리
+
+4. **ASP.NET 백엔드 및 데이터 연동**
+   - MVC 아키텍처를 기반으로 Controller, Service, Model 분리
+   - Entity Framework를 통해 PostgreSQL 데이터베이스와 객체지향적으로 연동
+   - RESTful API로 프론트와 데이터 통신 처리
+
+5. **PostgreSQL을 활용한 관계형 데이터베이스 설계**
+   - 직원(users), 부서(departments), 직급(positions), 근태(attendance), 연차(personal_leave), 결재(approvals), 휴가신청(leave_request) 테이블 구성
+   - 외래키, 인덱스, 제약조건 등을 통한 무결성 확보
+
+6. **더미 데이터와 ERD 기반 테스트 및 시나리오 검증**
+   - 다양한 직급/부서/역할을 반영한 더미 데이터 10건 이상 삽입
+   - 업무 흐름에 맞는 테스트 시나리오 검증 (출근, 지각, 병가, 휴가 승인 등)
+
+7. **모듈화된 폴더 구조와 확장 가능성**
+   - 프론트: `components`, `pages`, `services`, `hooks` 등 모듈 단위 구성
+   - 백엔드: `Controllers`, `Models`, `Services`, `Data` 등 분리된 책임 기반 구조
 
 
 ---
