@@ -1,9 +1,6 @@
 # 인사 관리 ERP 어플리케이션 사람숲 
 
-A | B| C
---|--|--|
-![구현 사진](url) | ![구현 사진](url) | ![구현 사진](url) 
-
+![구현 사진](docs/img/title.jpg) 
 
 ## 목차
 - [기획서 및 개발 문서](#기획서-및-개발-문서)
@@ -29,7 +26,8 @@ A | B| C
 
 
 1. [🔗 작업 로그 노션 ](https://universal-gallium-010.notion.site/2059b2f7b0af804f870feea9b6471448?source=copy_link)
-2. [🔗 기획 및 개발 정의서 구글 슬라이드](https://docs.google.com/presentation/d/1cj48KtGpLL-fApoqQQtzJOlXoqCeXz00Ee7nb3GiBJg/edit?usp=sharing)
+2. [🔗 개발 기획서](https://docs.google.com/presentation/d/1cj48KtGpLL-fApoqQQtzJOlXoqCeXz00Ee7nb3GiBJg/edit?usp=sharing)
+2. [🔗 기능 정의서](https://docs.google.com/spreadsheets/d/1S5rjBWc9SJgxgCSC1vVOIM7l-SeXTmkS1t6vcMo8n_g/edit?gid=0#gid=0)
 3. [🔗 DB 구조 및 ERD](https://dbdiagram.io/d/684f63793cc77757c8f86fe8)
 4. [🔗 협업 규칙](docs/cowork_rule.md)
 5. [🔗 피그마](https://www.figma.com/design/A4J6j9Wokzh3biuYxfpDQs/%EC%82%AC%EB%9E%8C%EC%88%B2_%EC%95%B1_%EB%94%94%EC%9E%90%EC%9D%B8?node-id=0-1&t=93PXqXVUEyUP5VSy-1)
@@ -48,7 +46,9 @@ A | B| C
 | 최영비(메인 스트림 담당) | https://github.com/cyeongb/saramsoop |
 
 ### 일정
-**5주: 2025.06.11(수) ~ 2025.07.16(수)**
+```
+5주: 2025.06.11(수) ~ 2025.07.16(수)
+```
 
 ### 제작 배경
 우리 팀은 실무에 가까운 개발 경험을 쌓는 것을 목표로 삼아, 많은 기업에서 실제로 활용되는 ERP 시스템에 주목하게 되었습니다. 특히 그중에서도 **인사(HR) 시스템은 조직의 핵심 운영과 밀접하게 연관되어 있고, 다양한 업무 시나리오와 데이터 흐름을 담을 수 있다는 점**에서 높은 학습 효과를 기대할 수 있다고 판단했습니다.
@@ -94,6 +94,12 @@ A | B| C
 
 ## 프로젝트 구조
 
+### 스타일가이드
+
+
+![스타일가이드](docs/img/design_Guide.jpg) | ![로고 및 공통](docs/img/style_logo.jpg)
+--|--|
+
 ### 레이아웃 구성
 
 #### 홈
@@ -121,86 +127,26 @@ A | B| C
 ![comm](docs/img/view_home.jpg) | ![comm](docs/img/view_home.jpg)
 
 ### 폴더 구조
-
-#### Frontend/
 ```
-├── eslint.config.js
-├── index.html
-├── node_modules
-├── package-lock.json
-├── package.json
-├── public
-├── src
-    ├── App.css
-    ├── App.tsx
-    ├── assets
-    ├── components
-    ├── contexts
-    ├── hooks
-    ├── index.css
-    ├── main.tsx
-    ├── mock
-    ├── pages
-    ├── routes
-    ├── services
-    ├── style
-    ├── types
-    ├── utils
-    └── vite-env.d.ts
-├── tsconfig.app.json
-├── tsconfig.json
-├── tsconfig.node.json
-├── vercel.json
-└── vite.config.ts
-
-```
-#### Backend/
-```
-├── Controllers
-│   ├── ApprovalController.cs
-│   ├── AttendControllers.cs
-│   ├── AttendanceController.cs
-│   ├── AuthController.cs
-│   └── EmployeeController.cs
-├── Data
-│   ├── AppDbContext.cs
-│   └── ApplicationDbContext.cs
-├── Dtos
-│   ├── ApprovalDto.cs
-│   ├── AttendDtos.cs
-│   ├── AttendanceDto.cs
-│   ├── DepartmentDto.cs
-│   └── EmployeeDto.cs
-├── Models
-│   ├── Approval.cs
-│   ├── Attendance.cs
-│   ├── Departments.cs
-│   └── EmployeeUser.cs
-├── Program.cs
-├── Properties
-│   └── launchSettings.json
-├── Repositories
-│   ├── Implementations
-│   └── Interfaces
-├── Services
-│   ├── ApprovalService.cs
-│   ├── EmployeeService.cs
-│   ├── Implementations
-│   └── Interfaces
-├── appsettings.Development.json
-├── appsettings.json
-├── backend.csproj
-├── backend.http
-├── backend.sln
-├── bin
-│   └── Debug
-└── obj
-    ├── Debug
-    ├── backend.csproj.nuget.dgspec.json
-    ├── backend.csproj.nuget.g.props
-    ├── backend.csproj.nuget.g.targets
-    ├── project.assets.json
-    └── project.nuget.cache
+Saramsoop/
+├── Backend/
+│   ├── Controllers/          # API 엔드포인트
+│   ├── Models/              # 데이터 모델 및 DTO
+│   ├── Services/            # 비즈니스 로직
+│   ├── Data/                # 데이터베이스 관련
+│   ├── Utils/               # 유틸리티
+│   └── Program.cs           # 애플리케이션 진입점
+└── Frontend/
+    ├── src/
+    │   ├── components/      # 재사용 가능한 UI 컴포넌트
+    │   ├── pages/          # 페이지 컴포넌트
+    │   ├── services/       # API 통신
+    │   ├── types/          # TypeScript 타입
+    │   ├── hooks/          # 커스텀 훅
+    │   ├── contexts/       # Context API
+    │   ├── utils/          # 유틸리티 함수
+    │   └── styles/         # 스타일 파일
+    └── package.json
 
 ```
 
@@ -234,4 +180,3 @@ A | B| C
 ### 최영비
 - 로그인: 백엔드 JWT토큰 연결 및 SHA 해시 알고리즘 구현
 - 결재관리: 백엔드 / 프론트엔드
-
