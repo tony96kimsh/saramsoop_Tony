@@ -10,6 +10,10 @@ const LoginRoutes: RouteObject[] = [
     element: <LoginPage />,
   },
   {
+    path: '/login',
+    element: <LoginPage />,
+  },
+  {
     path: '/unauthorized',
     element: <UnauthorizedPage />,
   },

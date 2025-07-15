@@ -10,6 +10,7 @@ namespace backend.Models
     public class Attendance
     {
         [Key]
+        [Column("id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
@@ -44,11 +45,8 @@ namespace backend.Models
         [Column("updated_at")]
         public DateTime? UpdatedAt { get; set; }
 
-        // Navigation properties
-        [ForeignKey("UserId")]
-        public virtual EmployeeUser? User { get; set; }  // ✅ 정확한 타입 지정
-
-        // [ForeignKey("LeaveRequestId")]
-        // public virtual LeaveRequest? LeaveRequest { get; set; }
+        // �׺���̼� ������Ƽ
+        [ForeignKey(nameof(UserId))]
+        public virtual EmployeeUser User { get; set; } = null!;
     }
 }

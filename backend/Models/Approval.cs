@@ -6,7 +6,8 @@ namespace backend.Models
     public class Approval
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id")] 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // 자동 생성 명시
         public int Id { get; set; }
 
         [Required]
@@ -46,11 +47,11 @@ namespace backend.Models
         public DateTime? UpdatedAt { get; set; }
 
         // Navigation properties
-        [ForeignKey("RequesterId")]
-        public virtual User? Requester { get; set; }
+        [ForeignKey(nameof(RequesterId))]
+        public virtual EmployeeUser Requester { get; set; } = null!;
 
-        [ForeignKey("ApproverId")]
-        public virtual User? Approver { get; set; }
+        [ForeignKey(nameof(ApproverId))]
+        public virtual EmployeeUser Approver { get; set; } = null!;
     }
     
 }
