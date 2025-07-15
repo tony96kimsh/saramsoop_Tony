@@ -23,6 +23,8 @@ A | B| C
   - [김한석](#김한석)
   - [최영비](#최영비)
 
+<br>
+
 ## 기획서 및 개발 문서
 
 
@@ -30,6 +32,7 @@ A | B| C
 2. [🔗 기획 및 개발 정의서 구글 슬라이드](https://docs.google.com/presentation/d/1cj48KtGpLL-fApoqQQtzJOlXoqCeXz00Ee7nb3GiBJg/edit?usp=sharing)
 3. [🔗 DB 구조 및 ERD](https://dbdiagram.io/d/684f63793cc77757c8f86fe8)
 4. [🔗 협업 규칙](docs/cowork_rule.md)
+5. [🔗 피그마](https://www.figma.com/design/A4J6j9Wokzh3biuYxfpDQs/%EC%82%AC%EB%9E%8C%EC%88%B2_%EC%95%B1_%EB%94%94%EC%9E%90%EC%9D%B8?node-id=0-1&t=93PXqXVUEyUP5VSy-1)
 
 ---
 
@@ -177,10 +180,20 @@ A | B| C
 
 ### DB 구조
 
+테이블 구조 | 필드 구조 |
+--|--|
+![1](docs/img/ERD_sub1.jpg)| ![1](docs/img/ERD_sub2.jpg)
+
+전체 구조 |
+--|
+![1](docs/img/ERD_main.svg)
+
 
 ---
 
 ## 개인 역할
+
+> 모두가 배우는 입장을 고려하여 기능 중심으로 개인마다 모두 백엔드, 프론트엔드, 마크업을 진행하였습니다.
 
 ### 김민혁
 프론트엔드
