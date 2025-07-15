@@ -58,18 +58,27 @@ A | B| C
 ### 기술 스택
 
 #### 프론트엔드
-- JavScript
-- React vite
-- TypeScript
-- UI 라이브러리: Material UI (MUI)
+
+- ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black), ![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black)  
+  → 컴포넌트 기반의 UI 구성에 최적화되어 있어 생산성과 유지보수성 향상  
+- ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)  
+  → 정적 타입 지원으로 안정성 있는 코드 작성 가능  
+- ![Material UI](https://img.shields.io/badge/MUI-007FFF?style=flat&logo=mui&logoColor=white)  
+  → 빠르고 일관된 디자인 시스템을 제공하는 UI 프레임워크
+
 #### 백엔드
-- C#
-- ASP.NET
-- ORM(Object-Relational Mapping): Entity Framework
+- ![C#](https://img.shields.io/badge/C%23-239120?style=flat&logo=c-sharp&logoColor=white)  
+  → 강력한 객체지향 언어로, 대규모 시스템 개발에 적합  
+- ![ASP.NET](https://img.shields.io/badge/ASP.NET-512BD4?style=flat&logo=dotnet&logoColor=white)  
+  → 보안과 성능이 뛰어난 웹 프레임워크로 REST API 서버 구축에 사용  
+- ![Entity Framework](https://img.shields.io/badge/Entity%20Framework-6DB33F?style=flat&logo=.net&logoColor=white)  
+  → 데이터베이스 연동을 객체지향적으로 다룰 수 있어 개발 효율이 높음
 
 #### 데이터베이스
-- DBMS: PostgreSQL
-- 로컬 개발용 툴: DBeaver
+- ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white)  
+  → 안정성과 확장성이 뛰어난 오픈소스 RDBMS로 기업에서도 많이 사용됨  
+- ![DBeaver](https://img.shields.io/badge/DBeaver-372923?style=flat&logo=dbeaver&logoColor=white)  
+  → SQL 시각화 및 관리에 편리한 툴로 로컬 개발에 활용
 
 
 ### 주요 기능
@@ -86,13 +95,30 @@ A | B| C
 ## 프로젝트 구조
 
 ### 레이아웃 구성
-로그인 | 홈 | 근태관리
---|--|--|
-![로그인]() | ![comm](src) | ![comm](src)
 
-직원관리 | 결재
+#### 홈
+로그인 | 홈
 --|--|
-![comm](src) | ![comm](src)
+![로그인](docs/img/view_log.jpg) | ![홈](docs/img/view_home.jpg)
+
+
+#### 직원관리 
+
+직원관리 | 직원상세
+--|--|
+![comm](docs/img/view_home.jpg) | ![comm](docs/img/view_home.jpg)
+
+
+#### 근태관리 
+근태관리 | 근태 상세
+--|--|
+![comm](docs/img/view_home.jpg) | ![comm](docs/img/view_home.jpg)
+
+
+#### 결재관리
+결재관리 | 결재신청
+--|--|
+![comm](docs/img/view_home.jpg) | ![comm](docs/img/view_home.jpg)
 
 ### 폴더 구조
 
@@ -196,27 +222,16 @@ A | B| C
 > 모두가 배우는 입장을 고려하여 기능 중심으로 개인마다 모두 백엔드, 프론트엔드, 마크업을 진행하였습니다.
 
 ### 김민혁
-프론트엔드
-- 1
-백엔드
-- 1
+- 직원관리: 백엔드 / 프론트엔드
 
 ### 김성훈
-프론트엔드
-- 1
-백엔드
-- 1
+- 근태관리: 백엔드 / 프론트엔드
 
 ### 김한석
-프론트엔드
-- 1
-백엔드
-- 1
+- 공통 레이아웃: 헤드 프론트
+- 로그인: 백엔드 / 프론트엔드
 
 ### 최영비
-프론트엔드
-- 1
-백엔드
-- 1
-
+- 로그인: 백엔드 JWT토큰 연결 및 SHA 해시 알고리즘 구현
+- 결재관리: 백엔드 / 프론트엔드
 
