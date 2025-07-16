@@ -148,9 +148,9 @@
 
 
 #### 결재관리
-결재관리 | 결재신청
+결재관리 | 결재상세
 --|--|
-![comm](docs/img/view_home.jpg) | ![comm](docs/img/view_home.jpg)
+![comm](docs/img/view_approval1.png) | ![comm](docs/img/view_approval2.png)
 
 ### 폴더 구조
 ```
