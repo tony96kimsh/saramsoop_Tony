@@ -138,13 +138,13 @@
 
 직원관리 | 직원상세
 --|--|
-![comm](docs/img/view_home.jpg) | ![comm](docs/img/view_home.jpg)
+![comm](docs/img/view_emp1.png) | ![comm](docs/img/view_emp2.png)
 
 
 #### 근태관리 
 근태관리 | 근태 상세
 --|--|
-![comm](docs/img/view_home.jpg) | ![comm](docs/img/view_home.jpg)
+![comm](docs/img/view_attend1.png) | ![comm](docs/img/view_attend3.png) 
 
 
 #### 결재관리
