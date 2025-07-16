@@ -1,6 +1,6 @@
-# 인사 관리 ERP 어플리케이션 사람숲 
+# 인사 관리 ERP 어플리케이션 사람숲 🌳
 
-![구현 사진](docs/img/title.jpg) 
+![팀 사진](docs/img/title.jpg) 
 
 ## 목차
 - [기획서 및 개발 문서](#기획서-및-개발-문서)
@@ -33,6 +33,8 @@
 5. [🔗 피그마](https://www.figma.com/design/A4J6j9Wokzh3biuYxfpDQs/%EC%82%AC%EB%9E%8C%EC%88%B2_%EC%95%B1_%EB%94%94%EC%9E%90%EC%9D%B8?node-id=0-1&t=93PXqXVUEyUP5VSy-1)
 
 ---
+![ppt1](docs/img/ppt_1.png) | ![ppt1](docs/img/ppt_2.png) 
+--|--|
 
 ## 프로젝트 개요
 
